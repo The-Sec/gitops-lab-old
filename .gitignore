@@ -1,0 +1,11 @@
+# Blocklist files/folders in same directory as the .gitignore file
+/*
+
+# Includelist some files
+#!README.md
+!.gitignore
+
+
+# Ignore all files named .DS_Store or ending with .log
+**/.DS_Store
+**.log
