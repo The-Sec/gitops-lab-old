@@ -12,7 +12,7 @@ _... powered by Talos, Kubernetes and my imagination_
 </div>
 
 <div align="center">
-  <img src="https://img.shields.io/badge/v1.7.0-a?style=for-the-badge&logo=talos&logoColor=fff&label=Talos&labelColor=302d41&color=cba6f7" alt="Talos version">
+  <img src="https://img.shields.io/badge/v1.7.1-a?style=for-the-badge&logo=talos&logoColor=fff&label=Talos&labelColor=302d41&color=cba6f7" alt="Talos version">
   <img src="https://img.shields.io/badge/v1.30.0-a?url=https%3A%2F%2Fkromgo.cjsolsen.com%2Fquery%3Fformat%3Dendpoint%26metric%3Dkubernetes_version&style=for-the-badge&logo=kubernetes&logoColor=fff&label=Kubernetes&labelColor=302d41&color=cba6f7" alt="Kubernetes version">
   <img src="https://img.shields.io/badge/ArgoCD-v2.10.6-cba6f7?logo=argo&logoColor=fff&style=for-the-badge&labelColor=302D41" alt="ArgoCD version">
   <img src="https://img.shields.io/github/issues-pr/the-sec/gitop-lab?logo=github&color=f2cdcd&logoColor=fff&style=for-the-badge&labelColor=302d41" alt="Open Pull Requests">
@@ -127,20 +127,27 @@ talosctl bootstrap -n 192.168.80.91
 ## prepare nodes
 Talos was at time of starting this journey the best choice as its an OS with only a few binaries in order to get kubernetes up and running. It doesn't have a shell or even a SSH server to login into. This means there are far less components and binaries involved that need mainenance or could pose an potential security risk as any point in time.
 
-#### RESET NODE vm
+#### RESET NODE
+reset wipe the whole drive but that doesn't work if you don't deploy nodes using PXE. So lets only wipe the partisions that contain state data(META, STATE and EPHEMERAL).
 //https://www.talos.dev/v1.7/learn-more/architecture/#file-system-partitions
 ```bash
 talosctl reset --system-labels-to-wipe META --system-labels-to-wipe STATE  --system-labels-to-wipe EPHEMERAL --reboot
 ```
 
 #### upscale cluster
-jsut run apply-config to machines not joined cluster.
+just run apply-config to machines not joined to the Talos cluster. To view nodes run
+```bash
+talosctl get members
+```
 ```sh
 talosctl apply-config --insecure --nodes $NODE_IP --file <CONTROLPLANE-FILE|WORKER-FILE>
 ```
 
+### upgrade nodes
+talosctl upgrade --preserve=true --nodes "192.168.80.91,192.168.80.92,192.168.80.93"
 
-## VMWare vSphere 
+## VMWare vSphere (OPTIONAL)
+The addisional container needs to be able to authenticate against the talos API.
 ```bash
 talosctl config new vmtoolsd-secret.yaml --roles os:admin
 kubectl -n kube-system create secret generic talos-vmtoolsd-config --from-file=talosconfig=./vmtoolsd-secret.yaml
