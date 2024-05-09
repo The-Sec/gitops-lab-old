@@ -2,3 +2,4 @@
 **/.DS_Store
 **.log
 **/key.txt
+**/vmtoolsd-secret.yaml
