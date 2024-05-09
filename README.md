@@ -28,8 +28,7 @@ The xs4 tag is one of the cluster running in an dataceter. There is a montly cos
 
 
 ### SWH
-The swh tag is my arm (pi) cluster running at home, unfortunatly power and internet acccess are not very stable. 
-that is located in a datacenter where i rent resources on a monthly bases. 
+The swh tag is my arm (pi) cluster running at home, unfortunatly power and internet acccess are not very stable.
 
 
 # XS4 Walkthrough
