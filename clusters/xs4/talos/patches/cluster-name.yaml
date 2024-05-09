@@ -1,0 +1,7 @@
+---
+# TODO: refactor
+# Set cluster and network names
+cluster:
+  clusterName: xs4.0x1337.nl
+  network:
+    dnsDomain: local.xs4.0x1337.nl

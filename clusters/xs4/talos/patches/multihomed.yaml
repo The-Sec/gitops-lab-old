@@ -1,0 +1,16 @@
+---
+#Force kubelet to only use private ip ranges for comminucation
+machine:
+  kubelet:
+    nodeIP:
+      validSubnets:
+        - 10.0.0.0/8
+        - 172.16.0.0/12
+        - 192.168.0.0/16
+#Force etcd to only use private ip ranges for comminucation
+cluster:
+  etcd:
+    advertisedSubnets: # listenSubnets defaults to advertisedSubnets if not set explicitly
+        - 10.0.0.0/8
+        - 172.16.0.0/12
+        - 192.168.0.0/16

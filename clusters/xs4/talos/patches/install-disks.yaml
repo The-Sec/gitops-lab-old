@@ -1,0 +1,9 @@
+---
+# Force Talos to install on disks small than 100GB,
+# as per https://www.talos.dev/v1.7/introduction/system-requirements/#storage
+machine:
+  install:
+    disk: none
+    diskSelector:
+      size: '< 100GB'
+    wipe: true
