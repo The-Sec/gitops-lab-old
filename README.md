@@ -55,11 +55,11 @@ Now with encryption keys, we can start working on the Talos cluster and encrypt 
 ### Talos
 While we setup the cluster one could leave the secrets in the default talosconfig file, but for managability its easier to have them seperated. So below we first generate the secrets for Talos.
 ```sh
- % talosctl gen secrets --output-file ./secrets.yaml
+ % talosctl gen secrets --output-file ./clusters/xs4/talos/secrets.yaml
 ```
 We need to store the following thow valus in envourment variables in order to pass them to the following commands we will use.
 ```bash
-#Use a cluster name
+#Name your cluster Don't forget to update ./clusters/xs4/talos/patches/cluster-name.yaml as well
 export CLUSTER_NAME="xs4"
 #Define a FQDN or IP address that will point to your control node(s). Mutiple A records are alllowed in case of multiple control nodes.
 export API_ENDPOINT="https://<CONTROLNODE_IP>:6443"
