@@ -1,0 +1,20 @@
+---
+# TODO: Generate with Ansible or bash ?
+# Set interfaces to DHCP with VIP
+machine:
+  network:
+    nameservers:
+      - 192.168.81.200
+    extraHostEntries:
+      - ip: 192.168.80.91
+        aliases:
+          - tc01
+      - ip: 192.168.80.92
+        aliases:
+          - tw02
+      - ip: 192.168.80.93
+        aliases:
+          - tw03
+  time:
+    servers:
+      - 0.nl.pool.ntp.org
