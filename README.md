@@ -24,7 +24,7 @@ _... powered by Talos, Kubernetes and my imagination_
 Due to my hunger in search of more insight, more knowledge and more power, there are mutiple clusters in this repo. The repo will be split up into sections. the base branch will only contain the most basic applications needed to start a cluster.
 
 ### XS4(all)
-The xs4 tag is one of the cluster running in an dataceter. There is a montly cost assosiated with it, but a lot more stable in terms of internet access, power, etc. and i there for feel the price is justifed. While this is a VMware vSphere cluster there is only the ability to access vSphere using a RDP to web gui avalible for management of the resources. This means amazing tools like [GOVC|https://github.com/vmware/govmomi/tree/main] are out of the question 🙁.
+The xs4 tag is one of the cluster running in an dataceter. There is a montly cost assosiated with it, but a lot more stable in terms of internet access, power, etc. and i there for feel the price is justifed. While this is a VMware vSphere cluster there is only the ability to access vSphere using a RDP to web gui avalible for management of the resources. This means amazing tools like [GOVC](https://github.com/vmware/govmomi/tree/main) are out of the question 🙁.
 
 
 ### SWH
@@ -59,13 +59,14 @@ While we setup the cluster one could leave the secrets in the default talosconfi
 ```
 We need to store the following thow valus in envourment variables in order to pass them to the following commands we will use.
 ```bash
-#Name your cluster Don't forget to update ./clusters/xs4/talos/patches/cluster-name.yaml as well
+#Name your cluster Don't forget to update ./clusters/xs4/talos/patches/cluster-name.yaml
 export CLUSTER_NAME="xs4"
-#Define a FQDN or IP address that will point to your control node(s). Mutiple A records are alllowed in case of multiple control nodes.
+#Define a FQDN or IP address that will point to your control node(s).
+#Mutiple A records are alllowed in case of multiple control nodes.
 export API_ENDPOINT="https://<CONTROLNODE_IP>:6443"
 ```
 Lets generate the config file so we can start with Talos.
-```sh
+```shell
 talosctl gen config \
 $CLUSTER_NAME $API_ENDPOINT \
 --with-secrets ./clusters/xs4/talos/secrets.yaml \
@@ -73,33 +74,29 @@ $CLUSTER_NAME $API_ENDPOINT \
 --output ./clusters/xs4/talos/talosconfig
 ```
 Now that we have a talosconfig file and we want to keep it seperated the easiest way to have the talosctl us it, is to store a referance to the file in an envrourment var. 
-```sh
+```shell
 export TALOSCONFIG=./clusters/xs4/talos/talosconfig
-```
-
-```sh
-talosctl gen config \
-$CLUSTER_NAME $API_ENDPOINT \
---with-secrets ./clusters/xs4/talos/secrets.yaml \
---config-patch @./clusters/xs4/talos/patches/*.yaml \
---config-patch @./clusters/xs4/talos/nodes/tc01.yaml \
---output-types controlplane \
---output ./clusters/xs4/talos/tc09.yaml
-```
-```sh
 talosctl gen config \
 $CLUSTER_NAME $API_ENDPOINT \
 --with-secrets ./clusters/xs4/talos/secrets.yaml \
 --config-patch @./clusters/xs4/talos/patches/cluster-name.yaml \
 --config-patch @./clusters/xs4/talos/patches/install-disks.yaml \
---config-patch @./clusters/xs4/talos/patches/mayastor.yaml \
+--config-patch @./clusters/xs4/talos/patches/multihomed.yaml \
+--config-patch @./clusters/xs4/talos/patches/network.yaml \
+--config-patch @./clusters/xs4/talos/patches/vmware.yaml \
+--config-patch @./clusters/xs4/talos/nodes/tc01.yaml \
+--output-types controlplane \
+--output ./clusters/xs4/talos/tc01.yaml
+talosctl gen config \
+$CLUSTER_NAME $API_ENDPOINT \
+--with-secrets ./clusters/xs4/talos/secrets.yaml \
+--config-patch @./clusters/xs4/talos/patches/cluster-name.yaml \
+--config-patch @./clusters/xs4/talos/patches/install-disks.yaml \
 --config-patch @./clusters/xs4/talos/patches/network.yaml \
 --config-patch @./clusters/xs4/talos/patches/vmware.yaml \
 --config-patch @./clusters/xs4/talos/nodes/tw02.yaml \
 --output-types worker \
 --output ./clusters/xs4/talos/tw02.yaml
-```
-```sh
 talosctl gen config \
 $CLUSTER_NAME $API_ENDPOINT \
 --with-secrets ./clusters/xs4/talos/secrets.yaml \
@@ -112,11 +109,9 @@ $CLUSTER_NAME $API_ENDPOINT \
 --output-types worker \
 --output ./clusters/xs4/talos/tw03.yaml
 ```
-```sh
-talosctl apply-config --nodes 192.168.80.127 --insecure --file ./clusters/xs4/talos/tc01.yaml
-```
 
 ```sh
+talosctl apply-config --nodes 192.168.80.127 --insecure --file ./clusters/xs4/talos/tc01.yaml
 talosctl bootstrap -n 192.168.80.91
 ```
 
@@ -124,8 +119,9 @@ talosctl bootstrap -n 192.168.80.91
  % sops -age <Public key> -e -i ./secrets.yaml
 ```
 
-## prepare nodes
+## Prepare nodes
 Talos was at time of starting this journey the best choice as its an OS with only a few binaries in order to get kubernetes up and running. It doesn't have a shell or even a SSH server to login into. This means there are far less components and binaries involved that need mainenance or could pose an potential security risk as any point in time.
+[Node Requierments](https://www.talos.dev/v1.7/introduction/system-requirements/)
 
 #### RESET NODE
 reset wipe the whole drive but that doesn't work if you don't deploy nodes using PXE. So lets only wipe the partisions that contain state data(META, STATE and EPHEMERAL).
@@ -144,12 +140,14 @@ talosctl apply-config --insecure --nodes $NODE_IP --file <CONTROLPLANE-FILE|WORK
 ```
 
 ### upgrade nodes
-talosctl upgrade --preserve=true --nodes "192.168.80.91,192.168.80.92,192.168.80.93"
+talosctl upgrade --preserve=true --nodes 192.168.80.91,192.168.80.92,192.168.80.93
 
 ## VMWare vSphere (OPTIONAL)
 The addisional container needs to be able to authenticate against the talos API.
-```bash
+```zah
+#Create authentication credentials
 talosctl config new vmtoolsd-secret.yaml --roles os:admin
+#Store credentials as Secret within our kube clsuter for the vmtoolsd pod to access them.
 kubectl -n kube-system create secret generic talos-vmtoolsd-config --from-file=talosconfig=./vmtoolsd-secret.yaml
 
 ```
