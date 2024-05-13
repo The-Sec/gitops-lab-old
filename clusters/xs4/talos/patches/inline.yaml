@@ -1,0 +1,4 @@
+cluster:
+    inlineManifests:
+        - name: argocd
+          contents: |-
