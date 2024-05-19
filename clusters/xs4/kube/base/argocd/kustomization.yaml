@@ -4,10 +4,9 @@ kind: Kustomization
 namespace: argocd
 
 resources:
-- ./base/namespace.yaml
+- ./namespace.yaml
 - https://raw.githubusercontent.com/argoproj/argo-cd/v2.10.6/manifests/install.yaml
-# - ./base/appsforapps.yaml
-# - ./base/ingress.yaml
+- ./appofapps.yaml
 
 patches:
 - path: ./patches/argocd-cm.yaml

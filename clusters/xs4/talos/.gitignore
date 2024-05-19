@@ -1,4 +1,3 @@
 talosconfig
-tc??.yaml
-tw??.yaml
-secrets.yaml
+controlplane.yaml
+worker.yaml

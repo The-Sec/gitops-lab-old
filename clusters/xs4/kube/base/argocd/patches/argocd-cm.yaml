@@ -6,10 +6,6 @@ data:
   # Argo CD instance label key
   application.instanceLabelKey: argocd.argoproj.io/instance
   application.resourceTrackingMethod: annotation
-  statusbadge.enabled: "true"
-  # Argo CD's externally facing base URL (optional). Required when configuring SSO
-  #url: https://argocd.xs4.groeneveld.xyz
-  #users.anonymous.enabled: "true"
   
   #KSOPS: enable plugins and execute
   kustomize.buildOptions: "--enable-alpha-plugins --enable-exec"
