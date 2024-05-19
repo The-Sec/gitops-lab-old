@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: HEAD
-    path: clusters/xs4/base/argocd
+    path: clusters/xs4/kube/base/argocd
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: argocd
