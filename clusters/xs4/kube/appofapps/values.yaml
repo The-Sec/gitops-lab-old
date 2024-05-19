@@ -4,3 +4,6 @@ spec:
     server: https://kubernetes.default.svc
   source:
     repoURL: git@github.com:The-Sec/gitops-lab.git
+apps:
+  versions:
+    metallb: 0.13.12
