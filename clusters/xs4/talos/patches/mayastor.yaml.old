@@ -1,8 +1,0 @@
----
-#
-# source: https://www.talos.dev/v1.7/kubernetes-guides/configuration/storage/#prep-nodes
-machine:
-  sysctls:
-    vm.nr_hugepages: "1024"
-  nodeLabels:
-    openebs.io/engine: mayastor
