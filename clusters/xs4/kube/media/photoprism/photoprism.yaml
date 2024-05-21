@@ -1,0 +1,120 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: photoprism
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: photoprism-secrets
+  namespace: photoprism
+stringData:
+  PHOTOPRISM_ADMIN_PASSWORD: something
+  # PHOTOPRISM_DATABASE_DSN: username:password@tcp(db-server-address:3306)/dbname?charset=utf8mb4,utf8&parseTime=true
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: photoprism
+  namespace: photoprism
+spec:
+  selector:
+    matchLabels:
+      app: photoprism
+  serviceName: photoprism
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: photoprism
+    spec:
+      containers:
+      - name: photoprism
+        image: photoprism/photoprism:latest
+        env:
+        - name: PHOTOPRISM_DEBUG
+          value: "true"
+        - name: PHOTOPRISM_DATABASE_DRIVER
+          value: sqlite
+        - name: PHOTOPRISM_HTTP_HOST
+          value: 0.0.0.0
+        - name: PHOTOPRISM_HTTP_PORT
+          value: "2342"
+        # Load database DSN & admin password from secret
+        envFrom:
+        - secretRef:
+            name: photoprism-secrets
+            optional: false
+        ports:
+        - containerPort: 2342
+          name: http
+        volumeMounts:
+        - mountPath: /photoprism/originals
+          name: originals
+        # - mountPath: /photoprism/import
+        #   name: import
+        - mountPath: /photoprism/storage
+          name: storage
+        readinessProbe:
+          httpGet:
+            path: /api/v1/status
+            port: http
+      volumes:
+      - name: originals
+        nfs:
+          path: /mnt/nfs_data/apps/photoprism
+          # readOnly: true # Disables import and upload!
+          server: 192.168.80.250
+      # - name: import
+      #   nfs:
+      #     path: /import
+      #     server: my.nas.host
+      - name: storage
+        nfs:
+          path: /storage
+          server: my.nas.host
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: photoprism
+  namespace: photoprism
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: http
+  selector:
+    app: photoprism
+  type: ClusterIP
+---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   annotations:
+#     # For nginx ingress controller:
+#     kubernetes.io/ingress.class: nginx
+#     # Default is very low so most photo uploads will fail:
+#     nginx.ingress.kubernetes.io/proxy-body-size: "512M"
+#     # If using cert-manager:
+#     cert-manager.io/cluster-issuer: letsencrypt-prod
+#     kubernetes.io/tls-acme: "true"
+#   name: photoprism
+#   namespace: photoprism
+# spec:
+#   rules:
+#   - host: photoprism.my.domain
+#     http:
+#       paths:
+#       - backend:
+#           service:
+#             name: photoprism
+#             port:
+#               name: http
+#         path: /
+#         pathType: Prefix
+#   tls:
+#   - hosts:
+#     - photoprism.my.domain
+#     secretName: photoprism-cert
