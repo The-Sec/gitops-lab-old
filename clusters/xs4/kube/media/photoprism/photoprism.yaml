@@ -49,7 +49,7 @@ spec:
         - containerPort: 2342
           name: http
         volumeMounts:
-        - mountPath: /photoprism/originals/iPhone
+        - mountPath: /photoprism/originals/iphone
           name: iPhone
         # - mountPath: /photoprism/import
         #   name: import
@@ -60,7 +60,7 @@ spec:
             path: /api/v1/status
             port: http
       volumes:
-      - name: iPhone
+      - name: iphone
         nfs:
           path: /media/pictures
           readOnly: true # Disables import and upload!
