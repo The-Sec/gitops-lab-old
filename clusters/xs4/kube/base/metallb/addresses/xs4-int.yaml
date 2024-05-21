@@ -6,6 +6,6 @@ metadata:
   namespace: metallb-system
 spec:
   addresses:
-    - 192.168.80.34/29
+    - 192.168.80.32/29
   autoAssign: false
   avoidBuggyIPs: false
