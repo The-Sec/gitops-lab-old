@@ -62,17 +62,17 @@ spec:
       volumes:
       - name: originals
         nfs:
-          path: /mnt/nfs_data/apps/photoprism
+          path: /media/pictures
           # readOnly: true # Disables import and upload!
-          server: 192.168.80.250
+          server: 192.168.81.250
       # - name: import
       #   nfs:
       #     path: /import
       #     server: my.nas.host
       - name: storage
         nfs:
-          path: /storage
-          server: my.nas.host
+          path: /mnt/nfs_data/apps/photoprism
+          server: 192.168.80.250
 ---
 apiVersion: v1
 kind: Service
