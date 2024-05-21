@@ -63,7 +63,7 @@ spec:
       - name: originals
         nfs:
           path: /media/pictures
-          # readOnly: true # Disables import and upload!
+          readOnly: true # Disables import and upload!
           server: 192.168.81.250
       # - name: import
       #   nfs:
