@@ -50,7 +50,7 @@ spec:
           name: http
         volumeMounts:
         - mountPath: /photoprism/originals/iphone
-          name: iPhone
+          name: iphone
         # - mountPath: /photoprism/import
         #   name: import
         - mountPath: /photoprism/storage
