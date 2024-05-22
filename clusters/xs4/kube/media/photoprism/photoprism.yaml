@@ -48,6 +48,8 @@ spec:
           value: "false"
         - name: PHOTOPRISM_EXPERIMENTAL
           value: "true"
+        - name: PHOTOPRISM_DISABLE_WEBDAV
+          value: "true"
         # Load database DSN & admin password from secret
         envFrom:
         - secretRef:
