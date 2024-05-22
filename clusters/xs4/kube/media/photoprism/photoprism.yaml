@@ -40,6 +40,14 @@ spec:
           value: 0.0.0.0
         - name: PHOTOPRISM_HTTP_PORT
           value: "2342"
+        - name: PHOTOPRISM_HTTP_COMPRESSION
+          value: "gzip"
+        - name: PHOTOPRISM_PUBLIC
+          value: "false"
+        - name: PHOTOPRISM_READONLY
+          value: "false"
+        - name: PHOTOPRISM_EXPERIMENTAL
+          value: "true"
         # Load database DSN & admin password from secret
         envFrom:
         - secretRef:
@@ -51,8 +59,6 @@ spec:
         volumeMounts:
         - mountPath: /photoprism/originals/iphone
           name: iphone
-        # - mountPath: /photoprism/import
-        #   name: import
         - mountPath: /photoprism/storage
           name: storage
         readinessProbe:
@@ -63,7 +69,7 @@ spec:
       - name: iphone
         nfs:
           path: /media/pictures
-          readOnly: true # Disables import and upload!
+          readOnly: true
           server: 192.168.81.250
       # - name: import
       #   nfs:
