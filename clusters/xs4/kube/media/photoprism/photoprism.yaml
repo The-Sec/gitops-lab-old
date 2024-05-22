@@ -70,9 +70,9 @@ spec:
       volumes:
       - name: iphone
         nfs:
-          path: /media/pictures
+          path: /mnt/nfs_data/media/photos/iphone
           readOnly: true
-          server: 192.168.81.250
+          server: 192.168.80.250
       # - name: import
       #   nfs:
       #     path: /import
