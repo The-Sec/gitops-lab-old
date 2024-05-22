@@ -45,7 +45,7 @@ spec:
         - name: PHOTOPRISM_PUBLIC
           value: "false"
         - name: PHOTOPRISM_READONLY
-          value: "false"
+          value: "true"
         - name: PHOTOPRISM_EXPERIMENTAL
           value: "true"
         - name: PHOTOPRISM_DISABLE_WEBDAV
