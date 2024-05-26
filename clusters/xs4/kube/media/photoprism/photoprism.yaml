@@ -52,6 +52,12 @@ spec:
         #   value: "true"
         - name: PHOTOPRISM_ORIGINALS_LIMIT
           value: "-1"
+        - name: PHOTOPRISM_DISABLE_RESTART
+          value: "true"
+        - name: PHOTOPRISM_INDEX_WORKERS
+          value: "2"
+        - name: PHOTOPRISM_DEFAULT_TIMEZONE
+          value: "GMT+1"
         # Load database DSN & admin password from secret
         envFrom:
         - secretRef:
@@ -63,6 +69,10 @@ spec:
         volumeMounts:
         - mountPath: /photoprism/originals/iphonexs
           name: iphonexs
+        - mountPath: /photoprism/originals/old
+          name: iphone
+        - mountPath: /photoprism/originals/nord
+          name: nord
         - mountPath: /photoprism/storage
           name: storage
         readinessProbe:
@@ -73,8 +83,17 @@ spec:
       - name: iphonexs
         nfs:
           path: /mnt/nfs_data/media/photos/iphonexs
-          # readOnly: true
           server: 192.168.80.250
+      - name: iphone
+        nfs:
+          path: /media/pictures
+          readOnly: true
+          server: 192.168.81.250
+      - name: nord
+        nfs:
+          path: /media/nord
+          readOnly: true
+          server: 192.168.81.250
       # - name: import
       #   nfs:
       #     path: /import
