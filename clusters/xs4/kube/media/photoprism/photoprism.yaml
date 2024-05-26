@@ -33,7 +33,7 @@ spec:
         image: photoprism/photoprism:latest
         env:
         - name: PHOTOPRISM_DEBUG
-          value: "true"
+          value: "false"
         - name: PHOTOPRISM_DATABASE_DRIVER
           value: sqlite
         - name: PHOTOPRISM_HTTP_HOST
@@ -47,9 +47,7 @@ spec:
         # - name: PHOTOPRISM_READONLY
         #   value: "true"
         - name: PHOTOPRISM_EXPERIMENTAL
-          value: "true"
-        # - name: PHOTOPRISM_DISABLE_WEBDAV
-        #   value: "true"
+          value: "false"
         - name: PHOTOPRISM_ORIGINALS_LIMIT
           value: "-1"
         - name: PHOTOPRISM_DISABLE_RESTART
@@ -57,7 +55,7 @@ spec:
         - name: PHOTOPRISM_INDEX_WORKERS
           value: "2"
         - name: PHOTOPRISM_DEFAULT_TIMEZONE
-          value: "GMT+1"
+          value: "Europe/Amsterdam"
         # Load database DSN & admin password from secret
         envFrom:
         - secretRef:
