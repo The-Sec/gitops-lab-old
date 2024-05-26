@@ -53,7 +53,7 @@ spec:
         - name: PHOTOPRISM_UID
           value: 1000
         - name: PHOTOPRISM_GID
-          value: 1
+          value: 1000
         # Load database DSN & admin password from secret
         envFrom:
         - secretRef:
