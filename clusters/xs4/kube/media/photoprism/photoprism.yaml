@@ -97,32 +97,32 @@ spec:
     app: photoprism
   type: ClusterIP
 ---
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   annotations:
-#     # For nginx ingress controller:
-#     kubernetes.io/ingress.class: nginx
-#     # Default is very low so most photo uploads will fail:
-#     nginx.ingress.kubernetes.io/proxy-body-size: "512M"
-#     # If using cert-manager:
-#     cert-manager.io/cluster-issuer: letsencrypt-prod
-#     kubernetes.io/tls-acme: "true"
-#   name: photoprism
-#   namespace: photoprism
-# spec:
-#   rules:
-#   - host: photoprism.my.domain
-#     http:
-#       paths:
-#       - backend:
-#           service:
-#             name: photoprism
-#             port:
-#               name: http
-#         path: /
-#         pathType: Prefix
-#   tls:
-#   - hosts:
-#     - photoprism.my.domain
-#     secretName: photoprism-cert
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    # For nginx ingress controller:
+    kubernetes.io/ingress.class: nginx
+    # Default is very low so most photo uploads will fail:
+    nginx.ingress.kubernetes.io/proxy-body-size: "512M"
+    # If using cert-manager:
+    #cert-manager.io/cluster-issuer: letsencrypt-prod
+    #kubernetes.io/tls-acme: "true"
+  name: photoprism
+  namespace: photoprism
+spec:
+  rules:
+  - host: pic.groeneveld.xyz
+    http:
+      paths:
+      - backend:
+          service:
+            name: photoprism
+            port:
+              name: http
+        path: /
+        pathType: Prefix
+  # tls:
+  # - hosts:
+  #   - photoprism.my.domain
+  #   secretName: photoprism-tls-cert
