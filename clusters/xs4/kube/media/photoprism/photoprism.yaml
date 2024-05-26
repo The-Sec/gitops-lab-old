@@ -48,8 +48,8 @@ spec:
           value: "true"
         - name: PHOTOPRISM_EXPERIMENTAL
           value: "true"
-        - name: PHOTOPRISM_DISABLE_WEBDAV
-          value: "true"
+        # - name: PHOTOPRISM_DISABLE_WEBDAV
+        #   value: "true"
         # Load database DSN & admin password from secret
         envFrom:
         - secretRef:
@@ -59,8 +59,8 @@ spec:
         - containerPort: 2342
           name: http
         volumeMounts:
-        - mountPath: /photoprism/originals/iphone
-          name: iphone
+        - mountPath: /photoprism/originals/iphonexs
+          name: iphonexs
         - mountPath: /photoprism/storage
           name: storage
         readinessProbe:
@@ -68,9 +68,9 @@ spec:
             path: /api/v1/status
             port: http
       volumes:
-      - name: iphone
+      - name: iphonexs
         nfs:
-          path: /mnt/nfs_data/media/photos/iphone
+          path: /mnt/nfs_data/media/photos/iphonexs
           readOnly: true
           server: 192.168.80.250
       # - name: import
@@ -111,6 +111,7 @@ metadata:
   name: photoprism
   namespace: photoprism
 spec:
+  ingressClassName: nginx
   rules:
   - host: pic.groeneveld.xyz
     http:
