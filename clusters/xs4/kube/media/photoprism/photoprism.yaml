@@ -44,8 +44,8 @@ spec:
           value: "gzip"
         - name: PHOTOPRISM_PUBLIC
           value: "false"
-        - name: PHOTOPRISM_READONLY
-          value: "true"
+        # - name: PHOTOPRISM_READONLY
+        #   value: "true"
         - name: PHOTOPRISM_EXPERIMENTAL
           value: "true"
         # - name: PHOTOPRISM_DISABLE_WEBDAV
@@ -71,7 +71,7 @@ spec:
       - name: iphonexs
         nfs:
           path: /mnt/nfs_data/media/photos/iphonexs
-          readOnly: true
+          # readOnly: true
           server: 192.168.80.250
       # - name: import
       #   nfs:
