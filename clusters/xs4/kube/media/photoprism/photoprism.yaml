@@ -67,8 +67,6 @@ spec:
         volumeMounts:
         - mountPath: /photoprism/originals/iphonexs
           name: iphonexs
-        - mountPath: /photoprism/originals/old
-          name: iphone
         - mountPath: /photoprism/storage
           name: storage
         readinessProbe:
