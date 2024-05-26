@@ -50,6 +50,10 @@ spec:
           value: "true"
         # - name: PHOTOPRISM_DISABLE_WEBDAV
         #   value: "true"
+        - name: PHOTOPRISM_UID
+          value: 1111
+        - name: PHOTOPRISM_GID
+          value: 1111
         # Load database DSN & admin password from secret
         envFrom:
         - secretRef:
