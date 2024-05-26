@@ -19,7 +19,7 @@ spec:
       targetRevision: {{ index .Values.apps.versions "ingress-nginx" }}
       helm:
         valueFiles:
-          - $values/clusters/xs4/base/nginx/values.yaml
+          - $values/clusters/xs4/kube/base/nginx/values.yaml
     - repoURL: {{ .Values.spec.source.repoURL }}
       targetRevision: HEAD
       ref: values
