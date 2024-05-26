@@ -71,8 +71,6 @@ spec:
           name: iphonexs
         - mountPath: /photoprism/originals/old
           name: iphone
-        - mountPath: /photoprism/originals/nord
-          name: nord
         - mountPath: /photoprism/storage
           name: storage
         readinessProbe:
