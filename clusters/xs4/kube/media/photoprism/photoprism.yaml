@@ -65,10 +65,12 @@ spec:
         - containerPort: 2342
           name: http
         volumeMounts:
-        - mountPath: /photoprism/originals/iphonexs
-          name: iphonexs
-        - mountPath: /photoprism/storage
-          name: storage
+        - name: iphonexs
+          mountPath: /photoprism/originals/iphonexs
+        - name: iphone6
+          mountPath: /photoprism/originals/iphone6
+        - name: storage
+          mountPath: /photoprism/storage
         readinessProbe:
           httpGet:
             path: /api/v1/status
@@ -77,6 +79,10 @@ spec:
       - name: iphonexs
         nfs:
           path: /mnt/nfs_data/media/photos/iphonexs
+          server: 192.168.80.250
+      - name: iphone6
+        nfs:
+          path: /mnt/nfs_data/media/photos/iphone6
           server: 192.168.80.250
       - name: iphone
         nfs:
