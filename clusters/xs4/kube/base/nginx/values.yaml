@@ -1,0 +1,24 @@
+
+controller:
+  # -- Global configuration passed to the ConfigMap consumed by the controller. Values may contain Helm templates.
+  # Ref.: https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/
+  config:
+    enable-real-ip: "true"
+    use-forwarded-headers: "true"
+    forwarded-for-header: "true"
+    whitelist-source-range: "192.168.80.0/22"
+    hsts: "true"
+    hsts-max-age: "31536000"
+    hsts-include-subdomains: "true"
+    hsts-preload: "true"
+    enable-ocsp: "true"
+
+  service:
+    # -- External traffic policy of the external controller service. Set to "Local" to preserve source IP on providers supporting it.
+    # Ref: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip
+    externalTrafficPolicy: "Local"
+
+    # -- Annotations to be added to the external controller service. See `controller.service.internal.annotations` for annotations to be added to the internal controller service.
+    annotations:
+      metallb.universe.tf/loadBalancerIPs: "192.168.80.37"
+    
