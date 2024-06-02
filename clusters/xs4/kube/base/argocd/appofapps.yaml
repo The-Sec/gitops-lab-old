@@ -8,7 +8,7 @@ spec:
   project: default
   source:
     repoURL: git@github.com:The-Sec/gitops-lab.git
-    targetRevision: HEAD
+    targetRevision: media
     path: ./clusters/xs4/kube/appofapps
   destination:
     server: https://kubernetes.default.svc
