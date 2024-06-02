@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     repoURL: {{ .Values.spec.source.repoURL }}
-    targetRevision: media
+    targetRevision: main
     path: clusters/xs4/kube/base/argocd
   destination:
     server: {{ .Values.spec.destination.server }}
