@@ -1,0 +1,38 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io  
+spec:
+  destination:
+    namespace: cert-manager
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+    - repoURL: 'https://charts.jetstack.io'
+      chart: cert-manager
+      targetRevision: {{ index .Values.apps.versions "cert-manager" }}
+      helm:
+        valueFiles:
+          - $values/clusters/xs4/base/certificates/cert-manager/values.yaml
+        values: |
+          spec:
+            acme:
+              email: NOTVALID
+    - repoURL: {{ .Values.spec.source.repoURL }}
+      targetRevision: {{ .Values.spec.source.branch }}
+      ref: values
+    - repoURL: {{ .Values.spec.source.repoURL }}
+      path: ./clusters/xs4/base/certificates/letsencrypt
+      targetRevision: {{ .Values.spec.source.branch }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
