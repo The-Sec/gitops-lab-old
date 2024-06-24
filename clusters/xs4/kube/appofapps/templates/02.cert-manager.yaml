@@ -11,7 +11,7 @@ metadata:
 spec:
   destination:
     namespace: cert-manager
-    server: https://kubernetes.default.svc
+    server: {{ .Values.spec.destination.server }}
   project: default
   sources:
     - repoURL: 'https://charts.jetstack.io'
@@ -20,10 +20,6 @@ spec:
       helm:
         valueFiles:
           - $values/clusters/xs4/base/certificates/cert-manager/values.yaml
-        values: |
-          spec:
-            acme:
-              email: NOTVALID
     - repoURL: {{ .Values.spec.source.repoURL }}
       targetRevision: {{ .Values.spec.source.branch }}
       ref: values
