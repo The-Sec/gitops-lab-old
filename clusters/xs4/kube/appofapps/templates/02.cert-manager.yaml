@@ -19,12 +19,12 @@ spec:
       targetRevision: {{ index .Values.apps.versions "cert-manager" }}
       helm:
         valueFiles:
-          - $values/clusters/xs4/base/certificates/cert-manager/values.yaml
+          - $values/clusters/xs4/kube/base/certificates/cert-manager/values.yaml
     - repoURL: {{ .Values.spec.source.repoURL }}
       targetRevision: {{ .Values.spec.source.branch }}
       ref: values
     - repoURL: {{ .Values.spec.source.repoURL }}
-      path: ./clusters/xs4/base/certificates/letsencrypt
+      path: ./clusters/xs4/kube/base/certificates/letsencrypt
       targetRevision: {{ .Values.spec.source.branch }}
   syncPolicy:
     automated:
