@@ -9,3 +9,4 @@ apps:
   versions:
     metallb: 0.13.12
     ingress-nginx: 4.9.0
+    openebs: 4.0.1
