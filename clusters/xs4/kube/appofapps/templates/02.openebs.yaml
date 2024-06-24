@@ -1,27 +1,25 @@
-project: default
-source:
-  repoURL: 'https://openebs.github.io/openebs'
-  targetRevision: {{ index .Values.apps.versions "openebs" }}
-  helm:
-    parameters:
-      - name: engines.replicated.mayastor.enabled
-        value: 'false'
-      - name: engines.local.lvm.enabled
-        value: 'false'
-      - name: engines.local.zfs.enabled
-        value: 'false'
-      - name: lvm-localpv.crds.lvmLocalPv.enabled
-        value: 'false'
-      - name: openebs-crds.csi.volumeSnapshots.enabled
-        value: 'false'
-      - name: openebs-crds.csi.volumeSnapshots.keep
-        value: 'false'
-      - name: lvm-localpv.enabled
-        value: 'false'
-  chart: openebs
-destination:
-  server: 'https://kubernetes.default.svc'
-  namespace: openebs
-syncPolicy:
-  syncOptions:
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: openebs
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io  
+spec:
+  destination:
+    namespace: openebs
+    server: {{ .Values.spec.destination.server }}
+  project: default
+  source:
+    repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.branch }}
+    path: ./clusters/xs4/kube/base/openebs
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
     - CreateNamespace=true
