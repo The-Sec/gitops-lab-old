@@ -11,7 +11,7 @@ metadata:
 spec:
   destination:
     namespace: cert-manager
-    server: {{ .Values.spec.destination.server }}
+    server: 'https://kubernetes.default.svc'
   project: default
   sources:
     - repoURL: 'https://charts.jetstack.io'
@@ -19,10 +19,10 @@ spec:
       targetRevision: {{ index .Values.apps.versions "cert-manager" }}
       helm:
         valueFiles:
-          - $values/clusters/xs4/kube/base/certificates/cert-manager/values.yaml
+          - $options/clusters/xs4/kube/base/certificates/cert-manager/values.yaml
     - repoURL: {{ .Values.spec.source.repoURL }}
       targetRevision: {{ .Values.spec.source.branch }}
-      ref: values
+      ref: options
     - repoURL: {{ .Values.spec.source.repoURL }}
       path: ./clusters/xs4/kube/base/certificates/letsencrypt
       targetRevision: {{ .Values.spec.source.branch }}
