@@ -8,8 +8,8 @@ metadata:
     argocd.argoproj.io/sync-wave: "-4"
 spec:
   destination:
-  server: {{ .Values.spec.destination.server }}
-  namespace: argocd
+    namespace: argocd
+    server: {{ .Values.spec.destination.server }}
   project: default
   source:
     repoURL: {{ .Values.spec.source.repoURL }}
