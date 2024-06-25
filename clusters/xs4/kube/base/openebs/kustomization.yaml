@@ -13,15 +13,26 @@ helmCharts:
   version: 4.0.1
   includeCRDs: true
   valuesInline:
-    openebs:
-      engines.local.lvm.enabled: false
-      engines.local.zfs.enabled: false
-      engines.replicated.mayastor.enabled: false
-      lvm-localpv.enabled: false
-      lvm-localpv.crds.lvmLocalPv.enabled: false
-      openebs-crds.csi.volumeSnapshots.enabled: false
-      openebs-crds.csi.volumeSnapshots.keep: false
-    
+    engines:
+      local:
+        lvm:
+          enabled: false
+        zfs:
+          enabled: false
+      replicated:
+        mayastor:
+          enabled: false
+    lvm-localpv:
+      enabled: false
+    lvm-localpv:
+      crds:
+        lvmLocalPv:
+          enabled: false
+    openebs-crds:
+      csi:
+        volumeSnapshots:
+          enabled: false
+          keep: false
 patches:
 - path: ./patches/openebs-hostpath.yaml
   target:
