@@ -21,7 +21,7 @@ helmCharts:
           enabled: false
       replicated:
         mayastor:
-          enabled: true
+          enabled: false
     lvm-localpv:
       enabled: false
     lvm-localpv:
