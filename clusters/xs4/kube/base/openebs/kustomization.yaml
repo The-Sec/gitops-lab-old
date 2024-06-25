@@ -9,18 +9,18 @@ resources:
 helmCharts:
 - name: openebs
   repo: https://openebs.github.io/openebs
-  releaseName: openebs
   namespace: openebs
   version: 4.0.1
   includeCRDs: true
   valuesInline:
-    engines.local.lvm.enabled: false
-    engines.local.zfs.enabled: false
-    engines.replicated.mayastor.enabled: false
-    lvm-localpv.enabled: false
-    lvm-localpv.crds.lvmLocalPv.enabled: false
-    openebs-crds.csi.volumeSnapshots.enabled: false
-    openebs-crds.csi.volumeSnapshots.keep: false
+    openebs:
+      engines.local.lvm.enabled: false
+      engines.local.zfs.enabled: false
+      engines.replicated.mayastor.enabled: false
+      lvm-localpv.enabled: false
+      lvm-localpv.crds.lvmLocalPv.enabled: false
+      openebs-crds.csi.volumeSnapshots.enabled: false
+      openebs-crds.csi.volumeSnapshots.keep: false
     
 patches:
 - path: ./patches/openebs-hostpath.yaml
