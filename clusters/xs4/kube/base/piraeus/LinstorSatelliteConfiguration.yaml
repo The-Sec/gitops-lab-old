@@ -31,12 +31,12 @@ spec:
             type: DirectoryOrCreate
   
   storagePools:
+    # - name: sdb
+    #   filePool:
+    #     directory: /var/mnt/storage/
     - name: sdb
-      filePool:
-        directory: /var/mnt/storage/
-    # - name: vg1
-    #   lvmPool:
-    #     volumeGroup: vg1
-    #   source:
-    #     hostDevices:
-    #       - /dev/sdb
+      lvmPool:
+        volumeGroup: sdb
+      source:
+        hostDevices:
+          - /dev/sdb
