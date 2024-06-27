@@ -32,7 +32,7 @@ spec:
   
   storagePools:
     - name: sdb
-      filePool:
+      fileThinPool:
         directory: /var/mnt/storage
     # - name: sdb
     #   lvmPool:
