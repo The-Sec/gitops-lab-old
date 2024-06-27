@@ -31,8 +31,10 @@ spec:
             type: DirectoryOrCreate
   
   storagePools:
-    lvmPools:
     - name: local
-      volumeGroup: sdb
-      devicePaths:
-      - /dev/sdb
+      lvmPool:
+        volumeGroup: local
+      source:
+        hostDevices:
+          - /dev/sdb
+          
