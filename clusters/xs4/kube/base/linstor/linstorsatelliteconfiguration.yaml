@@ -1,7 +1,7 @@
 apiVersion: piraeus.io/v1
 kind: LinstorSatelliteConfiguration
 metadata:
-  name: sdb-storage
+  name: sdb
 spec:
   podTemplate:
     spec:

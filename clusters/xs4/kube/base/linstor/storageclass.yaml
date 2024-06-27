@@ -8,4 +8,4 @@ provisioner: linstor.csi.linbit.com
 allowVolumeExpansion: true
 volumeBindingMode: WaitForFirstConsumer
 parameters:
-  linstor.csi.linbit.com/storagePool: sdb-storage
+  linstor.csi.linbit.com/storagePool: sdb
