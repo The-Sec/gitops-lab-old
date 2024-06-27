@@ -1,0 +1,42 @@
+apiVersion: piraeus.io/v1
+kind: LinstorSatelliteConfiguration
+metadata:
+  name: sdb-storage
+spec:
+  podTemplate:
+    spec:
+      initContainers:
+        - name: drbd-shutdown-guard
+          $patch: delete
+        - name: drbd-module-loader
+          $patch: delete
+      volumes:
+        - name: run-systemd-system
+          $patch: delete
+        - name: run-drbd-shutdown-guard
+          $patch: delete
+        - name: systemd-bus-socket
+          $patch: delete
+        - name: lib-modules
+          $patch: delete
+        - name: usr-src
+          $patch: delete
+        - name: etc-lvm-backup
+          hostPath:
+            path: /var/mnt/storage/backup
+            type: DirectoryOrCreate
+        - name: etc-lvm-archive
+          hostPath:
+            path: /var/mnt/storage/archive
+            type: DirectoryOrCreate
+  
+  storagePools:
+    - name: sdb
+      filePool:
+        directory: /var/mnt/storage/
+    # - name: vg1
+    #   lvmPool:
+    #     volumeGroup: vg1
+    #   source:
+    #     hostDevices:
+    #       - /dev/sdb
