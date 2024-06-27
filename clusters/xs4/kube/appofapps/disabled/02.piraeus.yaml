@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: piraeus
+  name: piraeus-datastore
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "-2"
@@ -10,7 +10,7 @@ metadata:
     - resources-finalizer.argocd.argoproj.io  
 spec:
   destination:
-    namespace: piraeus
+    namespace: piraeus-datastore
     server: {{ .Values.spec.destination.server }}
   project: default
   source:
