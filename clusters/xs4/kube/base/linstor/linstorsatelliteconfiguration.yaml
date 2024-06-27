@@ -31,12 +31,8 @@ spec:
             type: DirectoryOrCreate
   
   storagePools:
-    - name: sdb
-      fileThinPool:
-        directory: /var/mnt/storage
-    # - name: sdb
-    #   lvmPool:
-    #     volumeGroup: sdb
-    #   source:
-    #     hostDevices:
-    #       - /dev/sdb
+    lvmPools:
+    - name: local
+      volumeGroup: sdb
+      devicePaths:
+      - /dev/sdb
