@@ -20,5 +20,5 @@ controller:
 
     # -- Annotations to be added to the external controller service. See `controller.service.internal.annotations` for annotations to be added to the internal controller service.
     annotations:
-      metallb.universe.tf/loadBalancerIPs: "192.168.80.37"
+      metallb.universe.tf/loadBalancerIPs: "192.168.80.38"
     
