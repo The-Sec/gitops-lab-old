@@ -1,0 +1,60 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homer
+  labels:
+    app: homer
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: homer
+      labels:
+        app: homer
+    spec:
+      enableServiceLinks: false
+      containers:
+        - name: homer
+          image: docker.io/b4bz/homer:v23.10.1
+          env:
+            - name: TZ
+              value: 'Europe/Amsterdam'
+          # envFrom:
+          #   - configMapRef:
+          #       name: homer-config
+          resources:
+            requests:
+              cpu: 10m
+              memory: 10Mi
+            limits:
+              cpu: 50m
+              memory: 50Mi
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 20
+            periodSeconds: 5
+          ports:
+            - name: homer
+              containerPort: 8080
+              protocol: TCP
+          volumeMounts:
+            - name: homer-data
+              mountPath: /www/assets
+              subPath: data
+            # - name: homer-config
+            #   mountPath: /www/assets/config.yml
+            #   subPath: config.yml
+            #   readOnly: true
+      volumes:
+        - name: homer-data
+          persistentVolumeClaim:
+            claimName: homer-data
+        # - name: homer-config
+        #   configMap:
+        #     name: homer-config
+  selector:
+    matchLabels:
+      app: homer
