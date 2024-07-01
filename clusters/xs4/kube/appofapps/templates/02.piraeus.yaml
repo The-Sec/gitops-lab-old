@@ -16,7 +16,7 @@ spec:
   source:
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.branch }}
-    path: ./clusters/xs4/kube/base/piraeus
+    path: ./clusters/xs4/kube/base/storage/piraeus
   syncPolicy:
     automated:
       prune: true

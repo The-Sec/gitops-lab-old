@@ -1,7 +1,0 @@
----
-# As the XS4 cluster is runing on vmware and we would like Talos to comminucate with the Host API
-# we need to have Talos deploy the following DaemonSet.
-# source: https://github.com/siderolabs/talos-vmtoolsd
-cluster:
-  extraManifests:
-    - "https://raw.githubusercontent.com/siderolabs/talos-vmtoolsd/master/deploy/latest.yaml"

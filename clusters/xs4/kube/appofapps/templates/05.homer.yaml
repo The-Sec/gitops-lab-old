@@ -2,21 +2,22 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: openebs
+  name: Dashboard
+  info: Dashboard running Homer.
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "-2"
+    argocd.argoproj.io/sync-wave: "1"
   finalizers:
     - resources-finalizer.argocd.argoproj.io  
 spec:
   destination:
-    namespace: openebs
+    namespace: homer
     server: {{ .Values.spec.destination.server }}
   project: default
   source:
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.branch }}
-    path: ./clusters/xs4/kube/base/openebs
+    path: ./clusters/xs4/kube/dashboard/homer
   syncPolicy:
     automated:
       prune: true
