@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: Dashboard
+  name: dashboard
   info: Dashboard running Homer.
   namespace: argocd
   annotations:
