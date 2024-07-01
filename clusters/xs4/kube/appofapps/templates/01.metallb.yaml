@@ -49,3 +49,6 @@ spec:
     syncOptions:
       - CreateNamespace=true
       - RespectIgnoreDifferences=true
+  info:
+    - name: 'Project:'
+      value: "https://github.com/metallb/metallb"

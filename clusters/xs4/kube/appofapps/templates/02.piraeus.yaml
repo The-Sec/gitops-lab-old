@@ -23,3 +23,6 @@ spec:
       selfHeal: true
     syncOptions:
     - CreateNamespace=true
+  info:
+    - name: 'Project:'
+      value: "https://github.com/piraeusdatastore/piraeus-operator"
