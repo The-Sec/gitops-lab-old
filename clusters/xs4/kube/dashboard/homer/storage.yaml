@@ -11,7 +11,7 @@ spec:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   nfs:
-    path: /mnt/nfs_data/apps/homer
+    path: /mnt/nfs_data/apps/homer/data
     server: 192.168.80.250
 ---
 apiVersion: v1
