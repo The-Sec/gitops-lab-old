@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: oldlab
 
 resources:
+- "./namespace.yaml"
 - "./jellyfin/endpoints.yaml"
 - "./jellyfin/services.yaml"
 - "./jellyfin/ingress.yaml"
