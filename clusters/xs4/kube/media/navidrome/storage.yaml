@@ -8,11 +8,6 @@ spec:
     storage: 1Gi
   accessModes:
     - ReadWriteOnce
-  nfs:
-    path: /mnt/nfs_data/apps/navidrome
-    server: 192.168.80.250
-  mountOptions:
-    - nfsvers=4.2
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -21,7 +16,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: ""
+  storageClassName: "replicated"
   resources:
     requests:
       storage: 1Gi
@@ -39,7 +34,8 @@ spec:
     path: /mnt/nfs_data/media/music
     server: 192.168.80.250
   mountOptions:
-    - nfsvers=4.2
+    - hard
+    - nfsvers=4.1
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim

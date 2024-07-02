@@ -51,7 +51,7 @@ spec:
      volumes:
       - name: navidrome-data
         persistentVolumeClaim:
-          claimName: nfs-navidrome-data
+          claimName: navidrome-data
       - name: navidrome-music
         persistentVolumeClaim:
           claimName: nfs-navidrome-music
