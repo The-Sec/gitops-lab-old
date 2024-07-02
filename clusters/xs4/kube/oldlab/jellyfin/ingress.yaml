@@ -27,19 +27,7 @@ spec:
               name: oldlab-jellyfin-service
               port:
                 number: 80
-  - host: jf.groeneveld.xyz
-    http:
-        paths:
-        - pathType: Prefix
-          path: "/"
-          backend:
-            service:
-              name: oldlab-jellyfin-service
-              port:
-                number: 80
   tls:
   - hosts:
     - jf.0x1337.nl
-    secretName: oldlab-jellyfin-tls 
-    - jf.groeneveld.xyz
-    secretName: oldlab-jellyfin-groeneveld
+    secretName: oldlab-jellyfin-tls
