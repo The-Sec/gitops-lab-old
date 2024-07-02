@@ -44,10 +44,10 @@ spec:
             - name: homer-data
               mountPath: /www/assets
               subPath: data
-            # - name: homer-config
-            #   mountPath: /www/assets/config.yml
-            #   subPath: config.yml
-            #   readOnly: true
+            - name: homer-config
+              mountPath: /www/assets/config.yml
+              subPath: config.yml
+              readOnly: false
       volumes:
         - name: homer-data
           persistentVolumeClaim:
