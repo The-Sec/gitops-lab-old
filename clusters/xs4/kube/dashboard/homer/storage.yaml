@@ -2,29 +2,26 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: homer-data
+  name: nfs-homer
 spec:
   capacity:
     storage: 1Gi
-  volumeMode: Filesystem
   accessModes:
     - ReadWriteMany
-  persistentVolumeReclaimPolicy: Retain
-  mountOptions:
-    - nfsvers=4.2
   nfs:
     path: /mnt/nfs_data/apps/homer
     server: 192.168.80.250
+  mountOptions:
+    - nfsvers=4.2
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: homer-data
+  name: nfs-homer
 spec:
-  volumeMode: Filesystem
-  storageClassName: ""
   accessModes:
     - ReadWriteMany
+  storageClassName: ""
   resources:
     requests:
       storage: 1Gi

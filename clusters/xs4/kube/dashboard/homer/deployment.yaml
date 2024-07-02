@@ -52,11 +52,8 @@ spec:
             #   readOnly: false
       volumes:
         - name: nfs-homer
-          nfs:
-            path: /mnt/nfs_data/apps/homer
-            server: 192.168.80.250
-          mountOptions:
-            - nfsvers=4.2
+          persistentVolumeClaim:
+            claimName: nfs-homer
         # - name: homer-config
         #   configMap:
         #     name: homer-config
