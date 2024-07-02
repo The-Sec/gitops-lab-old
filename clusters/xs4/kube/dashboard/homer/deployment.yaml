@@ -21,7 +21,7 @@ spec:
             - name: TZ
               value: 'Europe/Amsterdam'
             - name: INIT_ASSETS
-              value: 0
+              value: '0'
           # envFrom:
           #   - configMapRef:
           #       name: homer-config
