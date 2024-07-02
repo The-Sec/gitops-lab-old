@@ -8,3 +8,6 @@ resources:
 - "./jellyfin/endpoints.yaml"
 - "./jellyfin/services.yaml"
 - "./jellyfin/ingress.yaml"
+- "./bitwarden/endpoints.yaml"
+- "./bitwarden/services.yaml"
+- "./bitwarden/ingress.yaml"
