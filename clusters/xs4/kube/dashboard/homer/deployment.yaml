@@ -30,12 +30,12 @@ spec:
             limits:
               cpu: 50m
               memory: 50Mi
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 8080
-            initialDelaySeconds: 20
-            periodSeconds: 5
+          # livenessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: 8080
+          #   initialDelaySeconds: 20
+          #   periodSeconds: 5
           ports:
             - name: homer
               containerPort: 8080
@@ -44,10 +44,10 @@ spec:
             - name: homer-data
               mountPath: /www/assets
               subPath: data
-            - name: homer-config
-              mountPath: /www/assets/config.yml
-              subPath: config.yml
-              readOnly: false
+            # - name: homer-config
+            #   mountPath: /www/assets/config.yml
+            #   subPath: config.yml
+            #   readOnly: false
       volumes:
         - name: homer-data
           persistentVolumeClaim:
