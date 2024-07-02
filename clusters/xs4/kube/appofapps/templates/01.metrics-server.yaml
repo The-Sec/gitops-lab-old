@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: metric-server
+  name: metrics-server
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "-3"
@@ -15,7 +15,7 @@ spec:
   sources:
     - repoURL: 'https://kubernetes-sigs.github.io/metrics-server/'
       chart: metrics-server
-      targetRevision: {{ index .Values.apps.versions "metric-server" }}
+      targetRevision: {{ index .Values.apps.versions "metrics-server" }}
       helm:
         valueFiles:
           - $values/clusters/xs4/kube/base/metrics-server/values.yaml
