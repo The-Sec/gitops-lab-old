@@ -43,17 +43,20 @@ spec:
               containerPort: 8080
               protocol: TCP
           volumeMounts:
-            - name: homer-data
-              mountPath: /www/assets
-              subPath: data
+            - name: nfs-homer
+              nfs:
+                path: /mnt/nfs_data/apps/homer
+                server: 192.168.80.250
+              mountOptions:
+                - nfsvers=4.2
             # - name: homer-config
             #   mountPath: /www/assets/config.yml
             #   subPath: config.yml
             #   readOnly: false
       volumes:
-        - name: homer-data
+        - name: nfs-homer
           persistentVolumeClaim:
-            claimName: homer-data
+            claimName: nfs-homer
         # - name: homer-config
         #   configMap:
         #     name: homer-config
