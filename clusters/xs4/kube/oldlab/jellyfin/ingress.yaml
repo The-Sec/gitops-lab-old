@@ -41,5 +41,5 @@ spec:
   - hosts:
     - jf.0x1337.nl
     secretName: oldlab-jellyfin-tls 
-    - jf.0x1337.nl
+    - jf.groeneveld.xyz
     secretName: oldlab-jellyfin-groeneveld
