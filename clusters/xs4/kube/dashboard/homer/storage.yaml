@@ -10,6 +10,8 @@ spec:
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
+  mountOptions:
+    - nfsvers=4.2
   nfs:
     path: /mnt/nfs_data/apps/homer
     server: 192.168.80.250
@@ -20,6 +22,7 @@ metadata:
   name: homer-data
 spec:
   volumeMode: Filesystem
+  storageClassName: ""
   accessModes:
     - ReadWriteMany
   resources:
