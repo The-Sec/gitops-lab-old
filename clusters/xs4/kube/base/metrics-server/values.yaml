@@ -3,5 +3,7 @@ service:
   port: 443
   annotations: {}
   labels:
-   - kubernetes.io/cluster-service: "true"
-   - kubernetes.io/name: "Metrics-server"
+    {
+      kubernetes.io/cluster-service: "true",
+      kubernetes.io/name: "Metrics-server"
+    }
