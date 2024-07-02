@@ -1,3 +1,7 @@
+apiService:
+  # Specifies whether to skip TLS verification
+  insecureSkipTLSVerify: "false"
+
 service:
   type: ClusterIP
   port: 443
