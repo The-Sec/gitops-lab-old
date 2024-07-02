@@ -15,7 +15,7 @@ spec:
   sources:
     - repoURL: 'https://kubernetes-sigs.github.io/metrics-server/'
       chart: metrics-server
-      targetRevision: {{ .Values.apps.versions.metallb }}
+      targetRevision: {{ index .Values.apps.versions "metric-server" }}
       helm:
         valueFiles:
           - $values/clusters/xs4/kube/base/metrics-server/values.yaml
