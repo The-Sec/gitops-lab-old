@@ -1,5 +1,5 @@
 service:
-  type: LocalIP
+  type: Local
   port: 443
   annotations: {}
   labels:
