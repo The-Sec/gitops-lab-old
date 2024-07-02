@@ -34,7 +34,7 @@ spec:
   capacity:
     storage: 1Gi
   accessModes:
-    - ReadOnlyOnce
+    - ReadWriteOnce
   nfs:
     path: /mnt/nfs_data/media/music
     server: 192.168.80.250
@@ -47,7 +47,7 @@ metadata:
   name: nfs-navidrome-music
 spec:
   accessModes:
-    - ReadOnlyOnce
+    - ReadWriteOnce
   storageClassName: ""
   resources:
     requests:
