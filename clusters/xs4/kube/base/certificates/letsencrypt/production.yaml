@@ -1,0 +1,39 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+    name: letsencrypt-production
+spec:
+    acme:
+        # You must replace this email address with your own.
+        # Let's Encrypt will use this to contact you about expiring
+        # certificates, and issues related to your account.
+        # Replace the EMAIL-ADDRESS placeholder with the correct email account
+        email: ENC[AES256_GCM,data:3UUNJxtfMtaGdjzO8ady,iv:VHWWPtDlauq3k8hoUa5JJY1G0cDRaizw7MOILvy3FWw=,tag:MhDqaosO9wnCqsffkzVD4w==,type:str]
+        server: https://acme-v02.api.letsencrypt.org/directory
+        privateKeySecretRef:
+            name: letsencrypt-production
+        # Add a single challenge solver, HTTP01 using nginx
+        solvers:
+            - http01:
+                ingress:
+                    class: nginx
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1mpts4q4cykrscvel3jwuv6ann3ff9952h3kljy4rancps5h2ag5sjf63pj
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBYdE5PRDgzVzNITHhSWWd6
+            a1RaakpwZkkwUjh5SEpaelA0NEUyMDR4VUE4CjlXUUM3REhTbG1tbEJhV285a3N0
+            cW94aUhYdmpDYktaejFqclEyK2tGNFUKLS0tIE55ODlKLzBCamN6cGxpOFV4TDdF
+            dWM1ckwvRlZ3THc0bTQ4THpselJKYlUK3aO6QWJtGfAPGhTCPmh1GDvob3V1ugv7
+            T8eUADt/wbCd8veI49umM0klQYHregI8j/PCbOrBR5v04yOzBZ4XIQ==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-07-02T03:18:01Z"
+    mac: ENC[AES256_GCM,data:XwJwySxJjhi0NYQcFwR4iGidUjigDGU4S8gufErySN1dj4n+Ag2H8AJac7iM9M2X6i6jv8yt7phEjSMjXqrup/7/WLdqdyDDLUQOrX/Vk3X9Co0TQU51hEHN7XFt4htn5/n83r5/7BlL9wWhfi1pm3EFEq527lSV5t62rsn86Rc=,iv:hI9qJqR4aVTW73rW2/HXTn21+F4M6TtItpVkw8rPopY=,tag:NdpUt1sRICQOj0kxekNEeQ==,type:str]
+    pgp: []
+    encrypted_regex: ^(email)$
+    version: 3.8.1
