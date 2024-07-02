@@ -1,0 +1,7 @@
+service:
+  type: LocalIP
+  port: 443
+  annotations: {}
+  labels:
+   - kubernetes.io/cluster-service: "true"
+   - kubernetes.io/name: "Metrics-server"
