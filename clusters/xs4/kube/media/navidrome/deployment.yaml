@@ -18,9 +18,9 @@ spec:
          image: docker.io/deluan/navidrome:0.52.5
          imagePullPolicy: Always
          resources:
-          #  limits:
-          #    cpu: ".5"
-          #    memory: "2Gi"
+           limits:
+             cpu: ".5"
+             memory: "2Gi"
            requests:
              cpu: "0.1"
              memory: "10M"
@@ -39,8 +39,6 @@ spec:
              value: info
            - name: ND_SESSIONTIMEOUT
              value: 24h
-          #  - name: ND_BASEURL
-          #    value: /navidrome
          livenessProbe:
             httpGet:
               path: /navidrome/app
