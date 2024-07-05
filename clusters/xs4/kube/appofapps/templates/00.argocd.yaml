@@ -14,7 +14,7 @@ spec:
   source:
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.branch }}
-    path: ./clusters/xs4/kube/base/argocd
+    path: ./clusters/xs4/kube/base/argocd/kustomization.yaml
   syncPolicy:
     automated:
       prune: false

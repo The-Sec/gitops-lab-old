@@ -26,6 +26,9 @@ spec:
     - repoURL: {{ .Values.spec.source.repoURL }}
       path: ./clusters/xs4/kube/base/certificates/letsencrypt
       targetRevision: {{ .Values.spec.source.branch }}
+    - repoURL: {{ .Values.spec.source.repoURL }}
+      targetRevision: {{ .Values.spec.source.branch }}
+      path: ./clusters/xs4/kube/base/argocd/ingress.yaml
   syncPolicy:
     automated:
       prune: true
