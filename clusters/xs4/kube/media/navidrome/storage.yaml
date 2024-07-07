@@ -6,7 +6,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: "replicated"
+  storageClassName: "disk"
   volumeMode: Filesystem
   resources:
     requests:
