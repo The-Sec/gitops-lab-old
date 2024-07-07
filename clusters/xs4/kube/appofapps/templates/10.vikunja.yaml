@@ -1,0 +1,38 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vikunja
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "6"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io  
+spec:
+  destination:
+    namespace: vikunja
+    server: {{ .Values.spec.destination.server }}
+  project: default
+  source:
+    repoURL: kolaente.dev/vikunja
+    chart: vikunja
+    targetRevision: {{ index .Values.apps.versions "vikunja" }}
+    helm:
+      parameters:
+        - name: postgresql.enabled
+          value: 'false'
+        - name: frontend.ingress.main.enabled
+          value: 'false'
+        - name: typesense.enabled
+          value: 'false'
+        - name: api.ingress.main.enabled
+          value: 'false'
+  # syncPolicy:
+  #   automated:
+  #     prune: true
+  #     selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+  info:
+    - name: 'Project:'
+      value: "https://vikunja.io/"
