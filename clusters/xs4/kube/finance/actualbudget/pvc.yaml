@@ -1,0 +1,14 @@
+---
+kind: PersistentVolumeClaim
+metadata:
+  name: actual-data
+  labels:
+    app: actual
+apiVersion: v1
+spec:
+  accessModes:
+    - ReadWriteMany
+  StorageClass: "replicated"
+  resources:
+    requests:
+      storage: 10Gi
