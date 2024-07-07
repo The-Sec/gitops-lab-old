@@ -14,19 +14,9 @@ spec:
     server: {{ .Values.spec.destination.server }}
   project: default
   source:
-    repoURL: kolaente.dev/vikunja
-    chart: vikunja
-    targetRevision: {{ index .Values.apps.versions "vikunja" }}
-    helm:
-      parameters:
-        - name: postgresql.enabled
-          value: 'false'
-        - name: frontend.ingress.main.enabled
-          value: 'false'
-        - name: typesense.enabled
-          value: 'false'
-        - name: api.ingress.main.enabled
-          value: 'false'
+    repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.branch }}
+    path: ./clusters/xs4/kube/dashboard/vikunja
   # syncPolicy:
   #   automated:
   #     prune: true
