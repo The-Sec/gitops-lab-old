@@ -7,8 +7,8 @@ metadata:
 apiVersion: v1
 spec:
   accessModes:
-    - ReadWriteMany
-  StorageClass: "replicated"
+    - ReadWriteOnce
+  storageClassName: "replicated"
   resources:
     requests:
       storage: 10Gi
