@@ -37,8 +37,8 @@ spec:
           #   initialDelaySeconds: 20
           #   periodSeconds: 5
           ports:
-            - name: homer
-              containerPort: 8080
+            - name: vikunja
+              containerPort: 3456
               protocol: TCP
           volumeMounts:
             - name: vikunja-config
