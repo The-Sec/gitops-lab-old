@@ -19,27 +19,28 @@ spec:
     targetRevision: {{ index .Values.apps.versions "vikunja" }}
     helm:
       parameters:
-        - name: postgresql.enabled
+        - name: "postgresql.enabled"
           value: 'false'
-        - name: frontend.ingress.main.enabled
+        - name: "frontend.ingress.main.enabled"
           value: 'false'
-        - name: typesense.enabled
+        - name: "typesense.enabled"
           value: 'false'
-        - name: api.ingress.main.enabled
+        - name: "api.ingress.main.enabled"
           value: 'false'
-        - name: api.configMaps.config.enabled
+        - name: "api.configMaps.config.enabled"
           value: 'true'
-        - name: api.configMaps.config.data.config\.yml.service.enableregistration
+        - name: "api.configMaps.config.data.config\.yml.service.enableregistration"
           value: 'false'
-        - name: api.persistence.data.enabled
+          forceString: true
+        - name: "api.persistence.data.enabled"
           value: 'true'
-        - name: api.persistence.data.accessMode
+        - name: "api.persistence.data.accessMode"
           value: 'ReadWriteOnce'
-        - name: api.persistence.data.size
+        - name: "api.persistence.data.size"
           value: '10Gi'
-        - name: api.persistence.data.mountPath
+        - name: "api.persistence.data.mountPath"
           value: '/app/vikunja/files'
-        - name: api.persistence.data.storageClass
+        - name: "api.persistence.data.storageClass"
           value: 'replicated'
   # syncPolicy:
   #   automated:
