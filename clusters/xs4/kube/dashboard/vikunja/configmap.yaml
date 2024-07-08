@@ -21,7 +21,7 @@ data:
       password: ""
       host: "localhost"
       database: "vikunja"
-      path: "./vikunja.db"
+      path: "/app/vikunja/files/vikunja.db"
 
     typesense:
       enabled: false
