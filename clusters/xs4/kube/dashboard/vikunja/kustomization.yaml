@@ -7,7 +7,9 @@ resources:
 - ./namespace.yaml
 
 helmCharts:
-- name: "oci://kolaente.dev/vikunja/vikunja"
+- name: vikunja
+  repo: oci://kolaente.dev/vikunja/vikunja
+  releaseName: vikunja
   namespace: vikunja
   version: 0.4.3
   valuesInline:
