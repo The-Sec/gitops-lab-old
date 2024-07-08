@@ -17,11 +17,11 @@ metadata:
 spec:
   tls:
     - hosts:
-        - moneyz.groeneveld.xyz
+        - moneyz.apps.groeneveld.xyz
       secretName: actual-tls
   ingressClassName: nginx
   rules:
-    - host: moneyz.groeneveld.xyz
+    - host: moneyz.apps.groeneveld.xyz
       http:
         paths:
           - path: /
