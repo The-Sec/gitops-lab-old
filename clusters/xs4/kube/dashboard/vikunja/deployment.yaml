@@ -41,11 +41,16 @@ spec:
               containerPort: 3456
               protocol: TCP
           volumeMounts:
+            - name: vikunja-disk
+              mountPath: /db/
             - name: vikunja-config
               mountPath: /etc/vikunja/config.yml
               subPath: config.yml
               readOnly: true
       volumes:
+        - name: vikunja-disk
+          configMap:
+            name: vikunja-config
         - name: vikunja-config
           configMap:
             name: vikunja-config
