@@ -7,53 +7,40 @@ metadata:
     app: vikunja
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: vikunja
   template:
     metadata:
       name: vikunja
       labels:
         app: vikunja
     spec:
-      enableServiceLinks: false
       containers:
-        - name: vikunja
-          image: vikunja/vikunja
-          env:
-            - name: TZ
-              value: 'Europe/Amsterdam'
-          envFrom:
-            - configMapRef:
-                name: vikunja-config
-          resources:
-            requests:
-              cpu: 10m
-              memory: 10Mi
-            limits:
-              cpu: 50m
-              memory: 50Mi
-          # livenessProbe:
-          #   httpGet:
-          #     path: /
-          #     port: 8080
-          #   initialDelaySeconds: 20
-          #   periodSeconds: 5
+        - env:
+            - name: "TZ"
+              value: Europe/Amsterdam
+          image: vikunja/vikunja:0.24.0
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+          name: vikunja
           ports:
-            - name: vikunja
-              containerPort: 3456
+            - containerPort: 3456
+              name: http
               protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+          resources: {}
           volumeMounts:
-            - name: vikunja-disk
-              mountPath: /db/
-            - name: vikunja-config
-              mountPath: /etc/vikunja/config.yml
-              subPath: config.yml
-              readOnly: true
+            - mountPath: /app/vikunja/files
+              name: vikunja-storage
+      serviceAccountName: default
       volumes:
-        - name: vikunja-disk
-          configMap:
-            name: vikunja-config
-        - name: vikunja-config
-          configMap:
-            name: vikunja-config
-  selector:
-    matchLabels:
-      app: vikunja
+        - name: vikunja-storage
+          persistentVolumeClaim:
+            claimName: vikunja-storage

@@ -7,6 +7,9 @@ metadata:
     app: homer
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: homer
   template:
     metadata:
       name: homer
@@ -57,6 +60,3 @@ spec:
         # - name: homer-config
         #   configMap:
         #     name: homer-config
-  selector:
-    matchLabels:
-      app: homer
