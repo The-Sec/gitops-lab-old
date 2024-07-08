@@ -29,7 +29,7 @@ spec:
           value: 'false'
         - name: api.configMaps.config.enabled
           value: 'true'
-        - name: api.configMaps.config.data.config.yml.service.enableregistration
+        - name: api.configMaps.config.data.config\.yml.service.enableregistration
           value: 'false'
         - name: api.persistence.data.enabled
           value: 'true'
