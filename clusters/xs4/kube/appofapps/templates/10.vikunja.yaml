@@ -33,7 +33,7 @@ spec:
               enabled: false
           configMaps:
             config:
-              enabled: true
+              enabled: false
               data:
                 config.yml:
                   service:
