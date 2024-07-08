@@ -5,37 +5,39 @@ namespace: vikunja
 
 resources:
 - ./namespace.yaml
+- ./configmap.yaml
+- ./deployment.yaml
 
-helmCharts:
-- name: vikunja
-  repo: oci://kolaente.dev/vikunja/vikunja
-  releaseName: vikunja
-  namespace: vikunja
-  version: 0.4.3
-  valuesInline:
-    postgresql:
-      enabled: false
-    frontend:
-      ingress:
-        main:
-          enabled: false
-    typesense:
-      enabled: false
-    api:
-      ingress:
-        main:
-          enabled: false
-      configMaps:
-        config:
-          enabled: true
-          data:
-            config.yml:
-              service:
-                enableregistration: false
-      persistence:
-        data:
-          enabled: true
-          accessMode: ReadWriteOnce
-          size: 10Gi
-          mountPath: /app/vikunja/files
-          storageClass: "replicated"
+# helmCharts:
+# - name: vikunja
+#   repo: oci://kolaente.dev/vikunja/vikunja
+#   releaseName: vikunja
+#   namespace: vikunja
+#   version: 0.4.3
+#   valuesInline:
+#     postgresql:
+#       enabled: false
+#     frontend:
+#       ingress:
+#         main:
+#           enabled: false
+#     typesense:
+#       enabled: false
+#     api:
+#       ingress:
+#         main:
+#           enabled: false
+#       configMaps:
+#         config:
+#           enabled: true
+#           data:
+#             config.yml:
+#               service:
+#                 enableregistration: false
+#       persistence:
+#         data:
+#           enabled: true
+#           accessMode: ReadWriteOnce
+#           size: 10Gi
+#           mountPath: /app/vikunja/files
+#           storageClass: "replicated"

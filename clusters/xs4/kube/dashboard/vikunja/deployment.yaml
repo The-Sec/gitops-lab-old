@@ -1,0 +1,54 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vikunja
+  labels:
+    app: vikunja
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: vikunja
+      labels:
+        app: vikunja
+    spec:
+      enableServiceLinks: false
+      containers:
+        - name: vikunja
+          image: vikunja/vikunja
+          env:
+            - name: TZ
+              value: 'Europe/Amsterdam'
+          envFrom:
+            - configMapRef:
+                name: vikunja-config
+          resources:
+            requests:
+              cpu: 10m
+              memory: 10Mi
+            limits:
+              cpu: 50m
+              memory: 50Mi
+          # livenessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: 8080
+          #   initialDelaySeconds: 20
+          #   periodSeconds: 5
+          ports:
+            - name: homer
+              containerPort: 8080
+              protocol: TCP
+          volumeMounts:
+            - name: vikunja-config
+              mountPath: /etc/vikunja/config.yml
+              subPath: config.yml
+              readOnly: true
+      volumes:
+        - name: vikunja-config
+          configMap:
+            name: vikunja-config
+  selector:
+    matchLabels:
+      app: vikunja
