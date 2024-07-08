@@ -33,11 +33,11 @@ spec:
               enabled: false
           configMaps:
             config:
-              enabled: false
-              # data:
-              #   config.yml:
-              #     service:
-              #       enableregistration: false
+              enabled: true
+              data:
+                config.yml:
+                  service:
+                    enableregistration: false
           persistence:
             data:
               enabled: true
