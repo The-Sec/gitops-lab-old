@@ -48,7 +48,7 @@ data:
       # Whether to skip verification of the tls certificate on the server
       skiptlsverify: false
       # The default from address when sending emails
-      fromemail: "vikunja@groeneveld.xyz"
+      fromemail: "vikunja@apps.groeneveld.xyz"
       # The length of the mail queue.
       queuelength: 100
       # The timeout in seconds after which the current open connection to the mailserver will be closed.
