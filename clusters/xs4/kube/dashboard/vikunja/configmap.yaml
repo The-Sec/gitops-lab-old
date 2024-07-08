@@ -7,7 +7,6 @@ data:
   config.yaml: |
     service:
       enableregistration: false
-
       enableemailreminders: true
       enableuserdeletion: true
       maxavatarsize: 1024
@@ -59,7 +58,7 @@ data:
 
     log:
       # A folder where all the logfiles should go.
-      path: <rootpath>logs
+      path: /app/vikunja/logs
       # Whether to show any logging at all or none
       enabled: true
       # Where the normal log should go. Possible values are stdout, stderr, file or off to disable standard logging.
@@ -138,7 +137,7 @@ data:
     # Prometheus metrics endpoint
     metrics:
       # If set to true, enables a /metrics endpoint for prometheus to collect metrics about Vikunja. You can query it from `/api/v1/metrics`.
-      enabled: false
+      enabled: true
       # If set to a non-empty value the /metrics endpoint will require this as a username via basic auth in combination with the password below.
       username:
       # If set to a non-empty value the /metrics endpoint will require this as a password via basic auth in combination with the username below.
@@ -159,15 +158,15 @@ data:
       # If set to true will send an email every day with all overdue tasks at a configured time.
       overdue_tasks_reminders_enabled: true
       # When to send the overdue task reminder email.
-      overdue_tasks_reminders_time: 9:00
+      overdue_tasks_reminders_time: 4:30
       # The id of the default project. Make sure users actually have access to this project when setting this value.
       default_project_id: 0
       # Start of the week for the user. `0` is sunday, `1` is monday and so on.
       week_start: 0
       # The language of the user interface. Must be an ISO 639-1 language code followed by an ISO 3166-1 alpha-2 country code. Check https://kolaente.dev/vikunja/vikunja/frontend/src/branch/main/src/i18n/lang for a list of possible languages. Will default to the browser language the user uses when signing up.
-      language: <unset>
+      language: "en"
       # The time zone of each individual user. This will affect when users get reminders and overdue task emails.
-      timezone: <time zone set at service.timezone>
+      timezone: "Europe/Amsterdam"
 
     webhooks:
       # Whether to enable support for webhooks
