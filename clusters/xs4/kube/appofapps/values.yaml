@@ -11,4 +11,3 @@ apps:
     metrics-server: 3.12.1
     ingress-nginx: 4.9.0
     cert-manager: v1.14.4
-    vikunja: 0.4.3
