@@ -33,9 +33,9 @@ data:
 
     mailer:
       # Whether to enable the mailer or not. If it is disabled, all users are enabled right away and password reset is not possible.
-      enabled: false
+      enabled: true
       # SMTP Host
-      host: ""
+      host: "smtp.office365.com"
       # SMTP Host port.
       # **NOTE:** If you're unable to send mail and the only error you see in the logs is an `EOF`, try setting the port to `25`.
       port: 587
@@ -48,13 +48,13 @@ data:
       # Whether to skip verification of the tls certificate on the server
       skiptlsverify: false
       # The default from address when sending emails
-      fromemail: "mail@vikunja"
+      fromemail: "vikunja@groeneveld.xyz"
       # The length of the mail queue.
       queuelength: 100
       # The timeout in seconds after which the current open connection to the mailserver will be closed.
       queuetimeout: 30
       # By default, Vikunja will try to connect with starttls, use this option to force it to use ssl.
-      forcessl: false
+      forcessl: true
 
     log:
       # A folder where all the logfiles should go.
