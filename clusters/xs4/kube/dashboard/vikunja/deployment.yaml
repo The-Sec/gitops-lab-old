@@ -20,7 +20,7 @@ spec:
         - env:
             - name: "TZ"
               value: Europe/Amsterdam
-          image: vikunja/vikunja:0.24.0
+          image: vikunja/vikunja:0.23.0
           imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:
