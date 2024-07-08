@@ -16,9 +16,6 @@ data:
 
     database:
       type: "sqlite"
-      user: "vikunja"
-      password: ""
-      host: "localhost"
       database: "vikunja"
       path: "/app/vikunja/files/vikunja.db"
 
