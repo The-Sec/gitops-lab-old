@@ -6,7 +6,7 @@ metadata:
 data:
   config.yaml: |
     service:
-      publicurl: "https://todo.groeneveld.xyz/"
+      publicurl: "https://todo.apps.groeneveld.xyz/"
       enableregistration: false
       enableemailreminders: true
       enableuserdeletion: true

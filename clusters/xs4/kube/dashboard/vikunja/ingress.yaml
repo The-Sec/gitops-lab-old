@@ -17,11 +17,11 @@ metadata:
 spec:
   tls:
     - hosts:
-        - todo.groeneveld.xyz
+        - todo.apps.groeneveld.xyz
       secretName: vikunja-groeneveld-tls
   ingressClassName: nginx
   rules:
-    - host: todo.groeneveld.xyz
+    - host: todo.apps.groeneveld.xyz
       http:
         paths:
           - path: /
