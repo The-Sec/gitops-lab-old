@@ -3,7 +3,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: vikunja-config
-data:
+data: >
   service:
     # This token is used to verify issued JWT tokens.
     # Default is a random token which will be generated at each startup of Vikunja.
