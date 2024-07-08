@@ -32,7 +32,7 @@ spec:
                 name: blog-service
                 port:
                   number: 80
-          - path: /vikunja/
+          - path: /todo/
             pathType: Prefix
             backend:
               service:

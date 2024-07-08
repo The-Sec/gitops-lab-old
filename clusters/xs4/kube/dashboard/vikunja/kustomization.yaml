@@ -9,7 +9,7 @@ resources:
 - ./deployment.yaml
 - ./storage.yaml
 - ./service.yaml
-- ./../blog/ingress.yaml
+- ./ingress.yaml
 
 # helmCharts:
 # - name: vikunja
