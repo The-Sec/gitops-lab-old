@@ -17,13 +17,13 @@ spec:
         app: vikunja
     spec:
       containers:
+        - name: vikunja
           image: vikunja/vikunja:0.23.0
           imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:
               path: /health
               port: http
-          name: vikunja
           ports:
             - containerPort: 3456
               name: http
