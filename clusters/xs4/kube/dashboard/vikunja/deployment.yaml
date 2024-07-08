@@ -24,9 +24,6 @@ spec:
             httpGet:
               path: /health
               port: http
-          env:
-            - name: VIKUNJA_FRONTEND_BASE
-              value: '/todo/'
           ports:
             - containerPort: 3456
               name: http

@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: blog-ingress
+  name: todo-ingress
   annotations: 
     # Due to global whitelisting we need to override restricted access.
     # To use whitelisting/override global whitelisting use the row below:
@@ -17,21 +17,14 @@ metadata:
 spec:
   tls:
     - hosts:
-        - blog.groeneveld.xyz
-      secretName: blog-tls
+        - todo.groeneveld.xyz
+      secretName: vikunja-groeneveld-tls
   ingressClassName: nginx
   rules:
-    - host: blog.groeneveld.xyz
+    - host: todo.groeneveld.xyz
       http:
         paths:
           - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: blog-service
-                port:
-                  number: 80
-          - path: /todo/
             pathType: Prefix
             backend:
               service:
