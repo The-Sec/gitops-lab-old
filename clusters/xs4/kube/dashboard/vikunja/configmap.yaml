@@ -42,7 +42,7 @@ data:
       # SMTP Auth Type. Can be either `plain`, `login` or `cram-md5`.
       authtype: "plain"
       # SMTP username
-      username: "user"
+      username: ""
       # SMTP password
       password: ""
       # Whether to skip verification of the tls certificate on the server
