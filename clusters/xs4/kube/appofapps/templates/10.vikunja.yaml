@@ -18,30 +18,33 @@ spec:
     chart: vikunja
     targetRevision: {{ index .Values.apps.versions "vikunja" }}
     helm:
-      parameters:
-        - name: "postgresql.enabled"
-          value: 'false'
-        - name: "frontend.ingress.main.enabled"
-          value: 'false'
-        - name: "typesense.enabled"
-          value: 'false'
-        - name: "api.ingress.main.enabled"
-          value: 'false'
-        - name: "api.configMaps.config.enabled"
-          value: 'true'
-        - name: "api.configMaps.config.data.config\.yml.service.enableregistration"
-          value: 'false'
-          forceString: true
-        - name: "api.persistence.data.enabled"
-          value: 'true'
-        - name: "api.persistence.data.accessMode"
-          value: 'ReadWriteOnce'
-        - name: "api.persistence.data.size"
-          value: '10Gi'
-        - name: "api.persistence.data.mountPath"
-          value: '/app/vikunja/files'
-        - name: "api.persistence.data.storageClass"
-          value: 'replicated'
+      valuesObject:
+        postgresql:
+          enabled: false
+        frontend:
+          ingress:
+            main:
+              enabled: false
+        typesense:
+          enabled: false
+        api:
+          ingress:
+            main:
+              enabled: false
+          configMaps:
+            config:
+              enabled: true
+              data:
+                config.yml:
+                  service:
+                    enableregistration: false
+          persistence:
+            data:
+              enabled: true
+              accessMode: ReadWriteOnce
+              size: 10Gi
+              mountPath: /app/vikunja/files
+              storageClass: "replicated"
   # syncPolicy:
   #   automated:
   #     prune: true
