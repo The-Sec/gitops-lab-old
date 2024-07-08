@@ -20,7 +20,7 @@ spec:
         - env:
             - name: "TZ"
               value: Europe/Amsterdam
-          image: vikunja/vikunja:0.23.0
+          image: vikunja/vikunja:0.24.0
           imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:
@@ -37,10 +37,17 @@ spec:
               port: http
           resources: {}
           volumeMounts:
-            - mountPath: /app/vikunja/files
-              name: vikunja-storage
+            - name: vikunja-storage
+              mountPath: /app/vikunja/files
+            - name: vikunja-config
+              mountPath: /etc/vikunja/config.yml
+              subPath: config.yaml
+              readOnly: true
       serviceAccountName: default
       volumes:
         - name: vikunja-storage
           persistentVolumeClaim:
             claimName: vikunja-storage
+        - name: vikunja-config
+          configMap:
+            name: vikunja-config

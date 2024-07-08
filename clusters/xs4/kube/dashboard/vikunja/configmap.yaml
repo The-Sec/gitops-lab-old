@@ -4,7 +4,7 @@ kind: ConfigMap
 metadata:
   name: vikunja-config
 data:
-  config.yml: |
+  config.yaml: |
     service:
       enableregistration: false
 

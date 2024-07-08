@@ -5,6 +5,7 @@ namespace: vikunja
 
 resources:
 - ./namespace.yaml
+- ./configmap.yaml
 - ./deployment.yaml
 - ./storage.yaml
 
