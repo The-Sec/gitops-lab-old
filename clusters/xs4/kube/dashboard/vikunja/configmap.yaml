@@ -48,13 +48,13 @@ data:
       # Whether to skip verification of the tls certificate on the server
       skiptlsverify: false
       # The default from address when sending emails
-      fromemail: "vikunja@apps.groeneveld.xyz"
+      fromemail: "vikunja@groeneveld.xyz"
       # The length of the mail queue.
       queuelength: 100
       # The timeout in seconds after which the current open connection to the mailserver will be closed.
       queuetimeout: 30
       # By default, Vikunja will try to connect with starttls, use this option to force it to use ssl.
-      forcessl: false
+      forcessl: true
 
     log:
       # A folder where all the logfiles should go.
