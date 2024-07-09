@@ -5,7 +5,7 @@ metadata:
   name: drawio
   namespace: drawio
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: draw.io
