@@ -1,0 +1,8 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: drawio_env
+data:
+  PUBLIC_DNS: "draw.apps.groeneveld.xyz"
+  DRAWIO_BASE_URL: "https://draw.apps.groeneveld.xyz"

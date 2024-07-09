@@ -20,3 +20,6 @@ spec:
         name: drawio
         ports:
         - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: drawio_env
