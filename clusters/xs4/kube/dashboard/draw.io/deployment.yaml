@@ -15,11 +15,11 @@ spec:
         app: draw.io
     spec:
       containers:
-      - image: docker.io/jgraph/drawio:alpine
+      - image: docker.io/jgraph/drawio:24.6.4
         imagePullPolicy: IfNotPresent
         name: drawio
         ports:
         - containerPort: 8080
         envFrom:
         - configMapRef:
-            name: drawio_env
+            name: drawio-env
