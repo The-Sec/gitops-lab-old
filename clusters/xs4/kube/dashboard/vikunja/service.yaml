@@ -7,7 +7,7 @@ spec:
   selector:
     app: vikunja
   ports:
-    - name: vikunja
+    - name: http
       protocol: TCP
       port: 80
       targetPort: 3456
