@@ -21,4 +21,4 @@ _... powered by Talos, Kubernetes and imagination_
 ---
 
 ## Intro
-Due to my hunger in search of more insight, more knowledge and more power, there are mutiple clusters in this repo. The repo will be split up into sections. the base branch will only contain the most basic applications needed to start a cluster.
+Due to my hunger in search of more insight, more knowledge and more power, there are multiple clusters in this repo. The repo will be split up into sections. the base branch will only contain the most basic applications needed to start a cluster. Atleast thats the idea :)
