@@ -1,0 +1,15 @@
+---
+# TODO: Generate with Ansible or bash ?
+# Set interfaces to DHCP, VIP will be handeld by MetalLB
+machine:
+  network:
+    interfaces:
+      - deviceSelector:
+          physical: true
+        dhcp: true
+    nameservers:
+      - 192.168.81.200
+  time:
+    servers:
+      - 0.nl.pool.ntp.org
+    

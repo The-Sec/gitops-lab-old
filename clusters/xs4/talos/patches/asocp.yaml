@@ -1,0 +1,4 @@
+---
+#Should be pretty self explanitory
+cluster:
+    allowSchedulingOnControlPlanes: true

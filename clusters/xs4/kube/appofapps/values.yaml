@@ -1,0 +1,13 @@
+---
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: git@github.com:The-Sec/gitops-lab.git
+    branch: main
+apps:
+  versions:
+    metallb: 0.13.12
+    metrics-server: 3.12.1
+    ingress-nginx: 4.9.0
+    cert-manager: v1.14.4

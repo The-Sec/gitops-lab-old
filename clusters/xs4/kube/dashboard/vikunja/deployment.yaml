@@ -1,0 +1,50 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vikunja
+  labels:
+    app: vikunja
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vikunja
+  template:
+    metadata:
+      name: vikunja
+      labels:
+        app: vikunja
+    spec:
+      containers:
+        - name: vikunja
+          image: vikunja/vikunja:0.23.0
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+          ports:
+            - containerPort: 3456
+              name: http
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+          resources: {}
+          volumeMounts:
+            - name: vikunja-storage
+              mountPath: /app/vikunja/files
+            - name: vikunja-config
+              mountPath: /etc/vikunja/config.yml
+              subPath: config.yaml
+              readOnly: true
+      serviceAccountName: default
+      volumes:
+        - name: vikunja-storage
+          persistentVolumeClaim:
+            claimName: vikunja-storage
+        - name: vikunja-config
+          configMap:
+            name: vikunja-config

@@ -1,0 +1,11 @@
+---
+creation_rules:
+  - path_regex: '/(talos).secrets.yaml'
+    encrypted_regex: "((?i)(^trusted|^secrets|^trustdinfo|^cluster|.[pP]assword|id|key|crt|ca|^data$|^stringData|^certs))"
+    age: 'age1mpts4q4cykrscvel3jwuv6ann3ff9952h3kljy4rancps5h2ag5sjf63pj'
+  - path_regex: '/(argocd.secrets).(age-key|github).yaml'
+    unencrypted_regex: "^(apiVersion|metadata|kind|type)$"
+    age: 'age1mpts4q4cykrscvel3jwuv6ann3ff9952h3kljy4rancps5h2ag5sjf63pj'
+  - path_regex: '/(letsencrypt).(staging|production).yaml'
+    encrypted_regex: "^(email)$"
+    age: 'age1mpts4q4cykrscvel3jwuv6ann3ff9952h3kljy4rancps5h2ag5sjf63pj'

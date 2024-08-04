@@ -1,0 +1,33 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: oldlab-jellyfin-ingress
+  annotations: 
+    # Due to global whitelisting we need to override restricted access.
+    # To use whitelisting/override global whitelisting use the row below:
+    nginx.ingress.kubernetes.io/whitelist-source-range: "192.168.80.0/23"
+    
+    # Lets use letsencrypt
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
+
+    # Force SSL
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: jf.0x1337.nl
+    http:
+        paths:
+        - pathType: Prefix
+          path: "/"
+          backend:
+            service:
+              name: oldlab-jellyfin-service
+              port:
+                number: 80
+  tls:
+  - hosts:
+    - jf.0x1337.nl
+    secretName: oldlab-jellyfin-tls

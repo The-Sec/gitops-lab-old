@@ -1,0 +1,10 @@
+---
+# Load drbd module
+# MAKE SURE YOU LOADED/INSTALLED A IMAGE THAT HAS THE DRBD EXTENSION EMBEDDED!!!!
+machine:
+  kernel:
+    modules:
+      - name: drbd
+        parameters:
+          - usermode_helper=disabled
+      - name: drbd_transport_tcp

@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: drawio
+  namespace: drawio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: draw.io
+  template:
+    metadata:
+      labels:
+        app: draw.io
+    spec:
+      containers:
+      - image: docker.io/jgraph/drawio:24.6.4
+        imagePullPolicy: IfNotPresent
+        name: drawio
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: drawio-env

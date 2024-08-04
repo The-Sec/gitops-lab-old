@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+  labels:
+    app.kubernetes.io/name: argocd-cm
+    app.kubernetes.io/part-of: argocd
+data:
+  # Argo CD instance label key
+  application.instanceLabelKey: argocd.argoproj.io/instance
+  application.resourceTrackingMethod: annotation
+  
+  #KSOPS: enable plugins and execute
+  kustomize.buildOptions: "--enable-alpha-plugins --enable-exec"
