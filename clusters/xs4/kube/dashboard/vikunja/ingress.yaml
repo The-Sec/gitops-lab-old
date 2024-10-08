@@ -10,6 +10,7 @@ metadata:
     
     # Lets use letsencrypt
     cert-manager.io/cluster-issuer: "letsencrypt-production"
+    cert-manager.io/revision-history-limit: "2"
 
     # Force SSL
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
@@ -17,11 +18,11 @@ metadata:
 spec:
   tls:
     - hosts:
-        - todo.apps.groeneveld.xyz
+        - todo.apps.groeneveld.me
       secretName: vikunja-groeneveld-tls
   ingressClassName: nginx
   rules:
-    - host: todo.apps.groeneveld.xyz
+    - host: todo.apps.groeneveld.me
       http:
         paths:
           - path: /
