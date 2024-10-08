@@ -18,10 +18,21 @@ spec:
   tls:
     - hosts:
         - hub.groeneveld.xyz
+        - hub.groeneveld.me
       secretName: homer-tls
   ingressClassName: nginx
   rules:
     - host: hub.groeneveld.xyz
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: homer-service
+                port:
+                  number: 80
+    - host: hub.groeneveld.me
       http:
         paths:
           - path: /
