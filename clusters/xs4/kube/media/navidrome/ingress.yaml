@@ -19,10 +19,21 @@ spec:
   tls:
     - hosts:
         - spotty.apps.groeneveld.me
+        - spotty.apps.groeneveld.xyz
       secretName: navidrome-tls
   ingressClassName: nginx
   rules:
     - host: spotty.apps.groeneveld.me
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: navidrome-service
+                port:
+                  number: 80
+    - host: spotty.apps.groeneveld.xyz
       http:
         paths:
           - path: /
