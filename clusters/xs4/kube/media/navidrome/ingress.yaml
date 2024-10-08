@@ -10,6 +10,7 @@ metadata:
     
     # Lets use letsencrypt
     cert-manager.io/cluster-issuer: "letsencrypt-production"
+    cert-manager.io/revision-history-limit: "2"
 
     # Force SSL
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
