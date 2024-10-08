@@ -17,11 +17,11 @@ metadata:
 spec:
   tls:
     - hosts:
-        - spotty.apps.groeneveld.xyz
+        - spotty.apps.groeneveld.me
       secretName: navidrome-tls
   ingressClassName: nginx
   rules:
-    - host: spotty.apps.groeneveld.xyz
+    - host: spotty.apps.groeneveld.me
       http:
         paths:
           - path: /
