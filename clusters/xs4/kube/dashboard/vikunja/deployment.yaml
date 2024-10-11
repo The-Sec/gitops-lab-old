@@ -18,8 +18,11 @@ spec:
     spec:
       containers:
         - name: vikunja
-          image: vikunja/vikunja:0.23.0
+          image: vikunja/vikunja:0.24.4
           imagePullPolicy: IfNotPresent
+          env:
+            - name: VIKUNJA_DATABASE_PATH
+              value: "/app/vikunja/files/vikunja.db"
           livenessProbe:
             httpGet:
               path: /health
