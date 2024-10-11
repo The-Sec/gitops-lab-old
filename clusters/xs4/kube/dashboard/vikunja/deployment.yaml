@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: vikunja
-          image: vikunja/vikunja:0.24.4
+          image: vikunja/vikunja@sha256:c93c58841215592c51a40fa978da25efadd1fff2460b42443c344132f322eef1
           imagePullPolicy: IfNotPresent
           env:
             - name: VIKUNJA_DATABASE_PATH
