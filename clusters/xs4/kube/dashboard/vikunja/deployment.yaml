@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: vikunja
-          image: vikunja/vikunja:0.24.4
+          image: vikunja/vikunja:0.23.0
           imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:
