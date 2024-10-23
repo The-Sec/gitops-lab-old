@@ -15,7 +15,7 @@ spec:
    spec:
      containers:
        - name: navidrome
-         image: docker.io/deluan/navidrome:0.52.5
+         image: docker.io/deluan/navidrome@sha256:d864c5ddbae508920b157d73b08bd48e93ec8c422003a491edd01a889497582a
          imagePullPolicy: Always
          resources:
            limits:
