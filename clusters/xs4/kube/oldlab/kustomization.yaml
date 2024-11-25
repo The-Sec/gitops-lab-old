@@ -12,3 +12,4 @@ resources:
 - "./bitwarden/services.yaml"
 - "./bitwarden/ingress.yaml"
 - "./homeassistant/bundle.yaml"
+- "./novnc/bundle.yaml"
