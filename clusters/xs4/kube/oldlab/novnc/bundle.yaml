@@ -37,8 +37,6 @@ spec:
       name: novnc
       port: 80
       targetport: 6080
-selector:
-    app: novnc
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
