@@ -1,0 +1,75 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  namespace: novnc
+  name: novnc
+  labels:
+    app: novnc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: novnc
+  template:
+    metadata:
+      labels:
+        app: novnc
+    spec:
+      containers:
+        - image: jhankins/docker-novnc:latest
+          imagePullPolicy: IfNotPresent
+          name: novnc
+          args:
+            - --vnc
+            - 192.168.81.77:5900
+          ports:
+            - name: novnc
+              containerPort: 6080
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: novnc-service
+spec:
+  ports:
+    - protocol: TCP
+      name: novnc
+      port: 80
+      targetport: 6080
+selector:
+    app: novnc
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: novnc-ingress
+  annotations: 
+    # Due to global whitelisting we need to override restricted access.
+    # To use whitelisting/override global whitelisting use the row below:
+    nginx.ingress.kubernetes.io/whitelist-source-range: "141.224.207.181/32,147.161.128.0/17"
+    
+    # Lets use letsencrypt
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
+    cert-manager.io/revision-history-limit: "2"
+
+    # Force SSL
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: novnc.apps.groeneveld.me
+    http:
+        paths:
+        - pathType: Prefix
+          path: "/"
+          backend:
+            service:
+              name: novnc-service
+              port:
+                number: 80
+  tls:
+  - hosts:
+    - novnc.apps.groeneveld.me
+    secretName: novnc-tls
