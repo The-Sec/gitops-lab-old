@@ -11,5 +11,5 @@ resources:
 - "./bitwarden/endpoints.yaml"
 - "./bitwarden/services.yaml"
 - "./bitwarden/ingress.yaml"
-- "./homeassistant/bundle.yaml"
-- "./novnc/bundle.yaml"
+#- "./homeassistant/bundle.yaml"
+#- "./novnc/bundle.yaml"
