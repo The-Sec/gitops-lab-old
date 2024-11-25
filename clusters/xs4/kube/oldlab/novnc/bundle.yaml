@@ -1,7 +1,6 @@
-kind: Deployment
 apiVersion: apps/v1
+kind: Deployment
 metadata:
-  namespace: novnc
   name: novnc
   labels:
     app: novnc
@@ -12,6 +11,7 @@ spec:
       app: novnc
   template:
     metadata:
+      name: novnc
       labels:
         app: novnc
     spec:
@@ -25,6 +25,7 @@ spec:
           ports:
             - name: novnc
               containerPort: 6080
+              protocol: TCP
       restartPolicy: Always
 ---
 apiVersion: v1
@@ -32,9 +33,11 @@ kind: Service
 metadata:
   name: novnc-service
 spec:
+  selector:
+    app: novnc
   ports:
-    - protocol: TCP
-      name: novnc
+    - name: novnc
+      protocol: TCP
       port: 80
       targetport: 6080
 ---
