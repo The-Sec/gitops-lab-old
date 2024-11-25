@@ -6,7 +6,7 @@ metadata:
   annotations: 
     # Due to global whitelisting we need to override restricted access.
     # To use whitelisting/override global whitelisting use the row below:
-    nginx.ingress.kubernetes.io/whitelist-source-range: "192.168.81.0/24,141.224.207.181/32,147.161.133.116/32"
+    nginx.ingress.kubernetes.io/whitelist-source-range: "192.168.81.0/24,141.224.207.181/32,147.161.133.116/32,147.161.133.89/32"
     
     # Lets use letsencrypt
     cert-manager.io/cluster-issuer: "letsencrypt-production"
