@@ -55,7 +55,8 @@ spec:
           imagePullPolicy: IfNotPresent
           name: novnc
           args:
-            - "--vnc 192.168.81.77:5900"
+            - "--vnc"
+            - "192.168.81.77:5900"
           ports:
             - name: http
               containerPort: 6080
