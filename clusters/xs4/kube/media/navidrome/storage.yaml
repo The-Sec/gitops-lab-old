@@ -23,7 +23,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   nfs:
-    path: /mnt/nfs_data/media/music
+    path: /mnt/nfs_data/media/music/converted
     server: 192.168.80.250
   mountOptions:
     - hard
