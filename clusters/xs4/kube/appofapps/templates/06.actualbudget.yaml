@@ -18,9 +18,6 @@ spec:
     targetRevision: {{ .Values.spec.source.branch }}
     path: ./clusters/xs4/kube/finance/actualbudget
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
     syncOptions:
     - CreateNamespace=true
   info:
