@@ -3,7 +3,7 @@ spec:
   destination:
     server: https://kubernetes.default.svc
   source:
-    repoURL: git@github.com:The-Sec/gitops-lab.git
+    repoURL: https://github.com/The-Sec/gitops-lab-old.git
     branch: main
 apps:
   versions:
