@@ -6,7 +6,7 @@ metadata:
     service: minecraft-server
   name: minecraft-server
   annotations:
-    metallb.universe.tf/loadBalancerIPs: "192.168.80.30"
+    metallb.universe.tf/loadBalancerIPs: "192.168.80.33"
 spec:
   ports:
     - port: 25565
