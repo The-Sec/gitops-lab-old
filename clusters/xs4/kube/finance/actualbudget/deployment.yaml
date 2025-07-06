@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: actual
-          image: ghcr.io/actualbudget/actual:25.6.0
+          image: ghcr.io/actualbudget/actual:24.11.0-alpine
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
