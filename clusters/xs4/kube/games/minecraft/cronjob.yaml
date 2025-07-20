@@ -3,10 +3,12 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: restic-backup
-  namespace: games  # Change me
+  namespace: games
 spec:
   concurrencyPolicy: Forbid
-  schedule: "12 2 * * *"  # Change me if needed (02:12 daily)
+  schedule: "12 2 * * *"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 2
   jobTemplate:
     spec:
       template:
@@ -21,11 +23,6 @@ spec:
             # command: "/bin/sh -c '[ 0==`/usr/bin/find . -type f -name .paused -mtime -1 | /usr/bin/wc -l` ] && echo \"True\"|| echo \"Pauzed for more than 24 hours\" '"
             command: ["/bin/sh","-c", "[ 1 == `/usr/bin/find . -type f -name .paused -mtime -1 | /usr/bin/wc -l` ] && /usr/bin/restic backup --host rke2 . || echo \"Pauzed for more than 24 hours\""]
             workingDir: /data
-            # args:
-            #   - backup
-            #   - --host
-            #   - rke2  # set a consistent hostname to avoid restic rescans
-            #   - .           # use workingDir to set path
             env:
               - name: RESTIC_REPOSITORY
                 value: 's3:https://s3.eu-central-003.backblazeb2.com/green-minecraft/'
