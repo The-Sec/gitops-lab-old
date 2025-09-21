@@ -15,7 +15,7 @@ _... powered by Talos, Kubernetes and imagination_
   <img src="https://img.shields.io/badge/v1.7.1-a?style=for-the-badge&logo=talos&logoColor=fff&label=Talos&labelColor=302d41&color=cba6f7" alt="Talos version">
   <img src="https://img.shields.io/badge/v1.30.0-a?url=https%3A%2F%2Fkromgo.cjsolsen.com%2Fquery%3Fformat%3Dendpoint%26metric%3Dkubernetes_version&style=for-the-badge&logo=kubernetes&logoColor=fff&label=Kubernetes&labelColor=302d41&color=cba6f7" alt="Kubernetes version">
   <img src="https://img.shields.io/badge/ArgoCD-v2.10.6-cba6f7?logo=argo&logoColor=fff&style=for-the-badge&labelColor=302D41" alt="ArgoCD version">
-  <img src="https://img.shields.io/github/issues-pr/the-sec/gitops-lab?logo=github&color=f2cdcd&logoColor=fff&style=for-the-badge&labelColor=302d41" alt="Open Pull Requests">
+  <img src="https://img.shields.io/github/issues-pr/the-sec/gitops-lab-old?logo=github&color=f2cdcd&logoColor=fff&style=for-the-badge&labelColor=302d41" alt="Open Pull Requests">
 </div>
 
 ---
